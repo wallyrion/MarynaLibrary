@@ -1,19 +1,23 @@
-<h1>
-  "home works!"
-</h1>
+<div class="mat-elevation-z8" *ngIf="dataSource.data && dataSource.data.length">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="firstName">
+      <th class="table-header" mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
+      <td class="table-first-cell" mat-cell *matCellDef="let element">{{element.firstName}}</td>
+    </ng-container>
 
-<!-- <mat-form-field>
-  <input matInput placeholder="Simple Input" [(ngModel)]="title">
-</mat-form-field>
+    <ng-container matColumnDef="lastName">
+      <th class="table-header" mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
+      <td class="table-first-cell" mat-cell *matCellDef="let element">{{element.lastName}}</td>
+    </ng-container>
 
-<mat-icon>home</mat-icon>
+    <ng-container matColumnDef="date">
+      <th class="table-header" mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+      <td class="table-first-cell" mat-cell *matCellDef="let element">{{element.date}}</td>
+    </ng-container>
 
-<button mat-raised-button>I'm a button</button>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSize]="pageSize" (page)="pageChange()"></mat-paginator>
 
-<mat-form-field>
-  <mat-select placeholder="I'm a select" [(ngModel)]="selectedValue">
-    <mat-option *ngFor="let item of items" [value]="item.value">
-      {{item.view}}
-    </mat-option>
-  </mat-select>
-</mat-form-field> -->
+</div>
