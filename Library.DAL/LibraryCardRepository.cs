@@ -4,18 +4,18 @@ using Library.DAL.Entities;
 
 namespace Library.DAL
 {
-    public class JournalRepository : IJournalRepository
+    public class LibraryCardRepository : ILibraryCardRepository
     {
         private readonly Context _context;
 
-        public JournalRepository(Context context)
+        public LibraryCardRepository(Context context)
         {
             _context = context;
         }
 
-        public List<JournalEntity> GetAll()
+        public List<LibraryCard> GetAll()
         {
-            return new List<JournalEntity>();
+            return new List<LibraryCard>();
         }
     }
 }

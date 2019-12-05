@@ -1,9 +1,5 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Library.BLL.Models;
-using Library.DAL.Entities;
+using Library.BL.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Library.WebApi.Controllers
