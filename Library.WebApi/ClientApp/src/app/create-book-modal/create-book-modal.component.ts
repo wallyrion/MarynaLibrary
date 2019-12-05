@@ -20,7 +20,7 @@ export class CreateBookModalComponent implements OnInit {
     private dialogRef: MatDialogRef<CreateBookModalComponent>,
     @Inject(MAT_DIALOG_DATA) data
   ) {
-    this.book = data.book;
+    this.book = data.book || {};
   }
 
   ngOnInit() {

@@ -19,7 +19,7 @@ export class CreateReaderModalComponent implements OnInit {
     private dialogRef: MatDialogRef<CreateReaderModalComponent>,
     @Inject(MAT_DIALOG_DATA) data
   ) {
-    this.reader = data.reader;
+    this.reader = data && data.reader || {};
   }
 
   ngOnInit() {

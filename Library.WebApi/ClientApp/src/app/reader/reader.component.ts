@@ -4,6 +4,7 @@ import { Book, Reader } from '../models/book';
 import { BookService } from '../services/book.service';
 import { CreateBookModalComponent } from '../create-book-modal/create-book-modal.component';
 import { ReaderService } from '../services/reader.service';
+import { CreateReaderModalComponent } from '../create-reader-modal/create-reader-modal.component';
 
 @Component({
   selector: 'app-reader',
@@ -33,10 +34,10 @@ export class ReaderComponent implements OnInit {
     });
   }
 
-  createBook() {
+  createReader() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
-    const dialogRef = this._dialog.open(CreateBookModalComponent, dialogConfig);
+    const dialogRef = this._dialog.open(CreateReaderModalComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe((reader: Reader) => {
       this._readerService.create(reader)
@@ -61,7 +62,7 @@ export class ReaderComponent implements OnInit {
 
     dialogConfig.disableClose = true;
     dialogConfig.data = { reader: reader };
-    const dialogRef = this._dialog.open(CreateBookModalComponent, dialogConfig);
+    const dialogRef = this._dialog.open(CreateReaderModalComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe((resReader: Reader) => {
       resReader.id = reader.id;
