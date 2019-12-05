@@ -21,15 +21,15 @@ namespace Library.WebApi.Controllers
             return _bookService.GetAll();
         }
 
-        [HttpPost]
-        public IActionResult Create(Book book)
+        [HttpPost("Create")]
+        public IActionResult Create([FromBody] Book book)
         {
-            _bookService.Create(book);
+            var id = _bookService.Create(book);
 
-            return Ok();
+            return Ok(id);
         }
 
-        [HttpDelete("Remove/{id}")]
+        [HttpDelete("remove/{id}")]
         public IActionResult Remove(int id)
         {
             _bookService.Remove();

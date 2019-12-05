@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   displayedColumns: string[] = ['firstName', 'lastName', 'date'];
 
   pageChange() {
-    
+
   }
 
   ngOnInit(): void {
