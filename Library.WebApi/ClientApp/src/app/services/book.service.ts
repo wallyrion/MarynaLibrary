@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Journal } from '../models/jornal';
 import { Observable } from 'rxjs';
+import { Book } from '../models/book';
 
 @Injectable({
   providedIn: 'root'
 })
-export class JournalService {
-
-  private getJournalUrl = 'api/journal';
+export class BookService {
 
   constructor(private _http: HttpClient) { }
+  private getAllBookUrl = 'api/book/GetAll';
 
-  getJournal(): Observable<Journal[]> {
-    return this._http.get<Journal[]>(this.getJournalUrl);
+  public GetAll(): Observable<Book[]> {
+    return this._http.get<Book[]>(this.getAllBookUrl);
   }
 }
