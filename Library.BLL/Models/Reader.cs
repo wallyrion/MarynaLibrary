@@ -1,6 +1,6 @@
 ﻿namespace Library.BLL.Models
 {
-    public class Person
+    public class Reader
     {
         public int Id { get; set; }
 

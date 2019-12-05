@@ -4,7 +4,7 @@ namespace Library.BLL.Models
 {
     public class Journal
     {
-        public Person Person { get; set; }
+        public Reader Reader { get; set; }
 
         public List<Book> Books { get; set; }
 
