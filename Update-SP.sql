@@ -14,7 +14,7 @@ AS
     Title = @Title,
     Quantity= @Quantity
     WHERE Id = @Id;
-  END;
+  END
 GO
 
 CREATE PROCEDURE spUpdateReader
@@ -30,7 +30,7 @@ AS
     LastName = @LastName,
     Phone= @Phone
     WHERE Id = @Id;
-  END;
+  END
 GO
 
 CREATE PROCEDURE spReturnBook
@@ -40,5 +40,5 @@ AS
   UPDATE LibraryCards
   SET ReturnDate = GETUTCDATE()
   WHERE Id = @Id;
-  END;
-GO;
+  END
+GO

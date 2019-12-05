@@ -53,6 +53,7 @@ namespace Library.DAL.Repositories
         public void Update(Book entity)
         {
             var parameters = new DynamicParameters();
+            parameters.Add("Id", entity.Id);
             parameters.Add("Author", entity.Author);
             parameters.Add("Title", entity.Title);
             parameters.Add("Quantity", entity.Quantity);

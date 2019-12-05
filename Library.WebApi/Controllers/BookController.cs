@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Library.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     public class BookController : Controller
     {
         private readonly IBookService _bookService;
@@ -15,13 +15,13 @@ namespace Library.WebApi.Controllers
             _bookService = bookService;
         }
 
-        [HttpGet("GetAll")]
+        [HttpGet]
         public List<Book> GetAll()
         {
             return _bookService.GetAll();
         }
 
-        [HttpPost("Create")]
+        [HttpPost]
         public IActionResult Create([FromBody] Book book)
         {
             var id = _bookService.Create(book);
@@ -29,7 +29,7 @@ namespace Library.WebApi.Controllers
             return Ok(id);
         }
 
-        [HttpPut("Edit")]
+        [HttpPut]
         public IActionResult Edit([FromBody] Book book)
         {
             _bookService.Edit(book);
@@ -38,7 +38,7 @@ namespace Library.WebApi.Controllers
         }
 
 
-        [HttpDelete("Remove/{id}")]
+        [HttpDelete("{id}")]
         public IActionResult Remove(int id)
         {
             _bookService.Remove(id);

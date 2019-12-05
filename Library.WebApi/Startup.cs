@@ -2,6 +2,10 @@ using AutoMapper;
 using Library.BL.Interfaces;
 using Library.BL.Services;
 using Library.DAL.Dapper;
+using Library.DAL.Interfaces;
+using Library.DAL.Models;
+using Library.DAL.Repositories;
+using Library.WebApi.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -23,6 +27,9 @@ namespace Library.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IRepository<Book>, BookRepository>();
+            services.AddTransient<IRepository<Reader>, ReaderRepository>();
+            services.AddTransient<IRepository<LibraryCard>, LibraryCardRepository>();
             services.AddTransient<IBookService, BookService>();
             services.AddTransient(options => new Context(Configuration.GetConnectionString("DefaultConnection")));
             services.AddAutoMapper(typeof(Startup));
