@@ -32,7 +32,7 @@ namespace Library.WebApi.Controllers
         [HttpDelete("remove/{id}")]
         public IActionResult Remove(int id)
         {
-            _bookService.Remove();
+            _bookService.Remove(id);
 
             return Ok();
         }

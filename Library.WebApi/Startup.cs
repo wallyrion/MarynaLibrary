@@ -1,9 +1,9 @@
+using AutoMapper;
 using Library.BL.Interfaces;
 using Library.BL.Services;
 using Library.DAL.Dapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
@@ -23,13 +23,10 @@ namespace Library.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
             services.AddTransient<IBookService, BookService>();
-            
-
             services.AddTransient(options => new Context(Configuration.GetConnectionString("DefaultConnection")));
-
+            services.AddAutoMapper(typeof(Startup));
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {

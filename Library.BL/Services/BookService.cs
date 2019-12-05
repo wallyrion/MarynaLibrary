@@ -11,20 +11,18 @@ namespace Library.BL.Services
             return new List<Book>
             {
                 new Book {Author = "fewrw", Id = 52, Quantity = 31, Title = "wertew"},
-                new Book {Author = "fewrw", Id = 52, Quantity = 31, Title = "wertew"},
-
+                new Book {Author = "fewrw", Id = 52, Quantity = 31, Title = "wertew"}
             };
         }
 
-        public void Remove()
+        public void Remove(int id)
         {
             throw new System.NotImplementedException();
         }
 
         public int Create(Book book)
         {
-            return 12;
-            throw new System.NotImplementedException();
+            return 0;
         }
     }
 }

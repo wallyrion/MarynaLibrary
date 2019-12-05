@@ -3,12 +3,12 @@ using Library.BL.Models;
 
 namespace Library.BL.Interfaces
 {
-    public interface IBookService
+    public interface IReaderService
     {
         List<Book> GetAll();
 
         void Remove(int id);
 
-        int Create(Book book);
+        int Create(Reader reader);
     }
 }
