@@ -9,38 +9,38 @@ using Library.DAL.Models;
 
 namespace Library.DAL.Repositories
 {
-    public class BookRepository : IRepository<Book>
+    public class ReaderRepository : IRepository<Reader>
     {
         private readonly Context _context;
 
-        public BookRepository(Context context)
+        public ReaderRepository(Context context)
         {
             _context = context;
         }
 
-        public List<Book> GetAll()
+        public List<Reader> GetAll()
         {
             using (var connection = new SqlConnection(_context.ConnectionString))
             {
                 connection.Open();
-                var result = connection.Query<Book>("[dbo].[spGetAllBooks]", commandType: CommandType.StoredProcedure);
+                var result = connection.Query<Reader>("[dbo].[spGetAllBooks]", commandType: CommandType.StoredProcedure);
 
                 return result.ToList();
             }
         }
 
-        public int Create(Book entity)
+        public int Create(Reader entity)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("Author", entity.Author);
+            parameters.Add("FirstName", entity.FirstName);
             parameters.Add("NewId", direction: ParameterDirection.Output);
-            parameters.Add("Title", entity.Title);
-            parameters.Add("Quantity", entity.Quantity);
+            parameters.Add("LastName", entity.LastName);
+            parameters.Add("Phone", entity.Phone);
 
             using (var connection = new SqlConnection(_context.ConnectionString))
             {
                 connection.Open();
-                connection.Execute("[dbo].[spCreateBook]",
+                connection.Execute("[dbo].[spCreateReader]",
                     parameters,
                     commandType: CommandType.StoredProcedure);
 
@@ -50,17 +50,17 @@ namespace Library.DAL.Repositories
             }
         }
 
-        public void Update(Book entity)
+        public void Update(Reader entity)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("Author", entity.Author);
-            parameters.Add("Title", entity.Title);
-            parameters.Add("Quantity", entity.Quantity);
+            parameters.Add("FirstName", entity.FirstName);
+            parameters.Add("LastName", entity.LastName);
+            parameters.Add("Phone", entity.Phone);
 
             using (var connection = new SqlConnection(_context.ConnectionString))
             {
                 connection.Open();
-                connection.Execute("[dbo].[spUpdateBook]",
+                connection.Execute("[dbo].[spUpdateReader]",
                     parameters,
                     commandType: CommandType.StoredProcedure);
             }
@@ -74,7 +74,7 @@ namespace Library.DAL.Repositories
             using (var connection = new SqlConnection(_context.ConnectionString))
             {
                 connection.Open();
-                connection.Execute("[dbo].[spDeleteBook]",
+                connection.Execute("[dbo].[spDeleteReader]",
                     parameters,
                     commandType: CommandType.StoredProcedure);
             }

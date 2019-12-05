@@ -9,7 +9,7 @@ using Library.DAL.Models;
 
 namespace Library.DAL.Repositories
 {
-    public class LibraryCardRepository : ILibraryCardRepository
+    public class LibraryCardRepository : IRepository<LibraryCard>
     {
         private readonly Context _context;
 
@@ -49,6 +49,16 @@ namespace Library.DAL.Repositories
 
                 return createdId;
             }
+        }
+
+        public void Update(LibraryCard entity)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Remove(int id)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
