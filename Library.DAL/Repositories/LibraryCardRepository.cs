@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Data;
-using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using Dapper;
 using Library.DAL.Dapper;
+using Library.DAL.Interfaces;
 using Library.DAL.Models;
 
-namespace Library.DAL
+namespace Library.DAL.Repositories
 {
     public class LibraryCardRepository : ILibraryCardRepository
     {
@@ -23,7 +23,7 @@ namespace Library.DAL
             using (var connection = new SqlConnection(_context.ConnectionString))
             {
                 connection.Open();
-                var result = connection.Query<LibraryCard>("[dbo].[usp_app_RetrieveEDIMetaDataList]", commandType: CommandType.StoredProcedure);
+                var result = connection.Query<LibraryCard>("[dbo].[spGetLibraryCard]", commandType: CommandType.StoredProcedure);
 
                 return result.ToList();
             }
@@ -31,19 +31,22 @@ namespace Library.DAL
 
         public int Create(LibraryCard card)
         {
-
             var parameters = new DynamicParameters();
             parameters.Add("ReaderId", card.ReaderId);
-            parameters.Add("CreatedId", direction: ParameterDirection.Output);
+            parameters.Add("NewId", direction: ParameterDirection.Output);
+            parameters.Add("BookId", card.BookId);
+            parameters.Add("ScheduleReturnDate", card.ScheduleReturnDate);
+            parameters.Add("Quantity", card.Quantity);
 
             using (var connection = new SqlConnection(_context.ConnectionString))
             {
                 connection.Open();
-                connection.Execute("[dbo].[usp_app_RetrieveEDIMetaDataList]",
+                connection.Execute("[dbo].[spCreateLibraryCard]",
                     parameters,
                     commandType: CommandType.StoredProcedure);
 
-                var createdId = parameters.Get<int>("CreatedId");
+                var createdId = parameters.Get<int>("NewId");
+
                 return createdId;
             }
         }
