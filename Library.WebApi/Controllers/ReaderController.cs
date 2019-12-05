@@ -31,6 +31,14 @@ namespace Library.WebApi.Controllers
             return Ok(id);
         }
 
+        [HttpPut]
+        public IActionResult Edit([FromBody]Reader reader)
+        {
+            _readerService.Edit(reader);
+
+            return Ok();
+        }
+
         [HttpDelete("{id}")]
         public IActionResult Remove(int id)
         {

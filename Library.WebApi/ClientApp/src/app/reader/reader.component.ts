@@ -12,7 +12,7 @@ import { CreateReaderModalComponent } from '../create-reader-modal/create-reader
   styleUrls: ['./reader.component.scss']
 })
 export class ReaderComponent implements OnInit {
-  displayedColumns = ['firstName', 'lastName', 'phone']
+  displayedColumns = ['firstName', 'lastName', 'phone', 'action']
   pageSize = 5;
   data: Reader[] = [];
   dataSource = new MatTableDataSource<Reader>(this.data);
@@ -43,7 +43,7 @@ export class ReaderComponent implements OnInit {
       this._readerService.create(reader)
         .subscribe((id: number) => {
           reader.id = id;
-          this.data.push(reader);
+          this.data.unshift(reader);
           this.dataSource._updateChangeSubscription();
         });
     });
