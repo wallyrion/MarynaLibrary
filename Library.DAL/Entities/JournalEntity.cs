@@ -2,7 +2,7 @@
 
 namespace Library.DAL.Entities
 {
-    public class Journal
+    public class JournalEntity
     {
         public string FirstName { get; set; }
 

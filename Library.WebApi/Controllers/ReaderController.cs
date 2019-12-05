@@ -1,22 +1,20 @@
-
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Library.BLL.Models;
+using Library.DAL.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Library.WebApi.Controllers
 {
     [Route("api/[controller]")]
-    public class JournalController : Controller
+    public class ReaderController : Controller
     {
         [HttpGet]
-        public List<Journal> GetAllRecords()
+        public List<Reader> GetAll()
         {
-            var list = new List<Journal>
-            {
-  
-
-            };
-
+            var list = new List<Reader>();
             return list;
         }
 
@@ -26,7 +24,7 @@ namespace Library.WebApi.Controllers
             return Ok();
         }
 
-        [HttpDelete("remove/{id}")]
+        [HttpDelete("Remove/{id}")]
         public IActionResult Remove(int id)
         {
             return Ok();
