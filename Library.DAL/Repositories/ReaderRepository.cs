@@ -53,6 +53,7 @@ namespace Library.DAL.Repositories
         public void Update(Reader entity)
         {
             var parameters = new DynamicParameters();
+            parameters.Add("Id", entity.Id);
             parameters.Add("FirstName", entity.FirstName);
             parameters.Add("LastName", entity.LastName);
             parameters.Add("Phone", entity.Phone);

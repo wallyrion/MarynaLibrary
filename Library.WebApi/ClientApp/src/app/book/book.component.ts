@@ -40,12 +40,11 @@ export class BookComponent implements OnInit {
     dialogConfig.data = {};
     const dialogRef = this._dialog.open(CreateBookModalComponent, dialogConfig);
     
-
     dialogRef.afterClosed().subscribe((book: Book) => {
       this._bookService.create(book)
         .subscribe((id: number) => {
           book.id = id;
-          this.data.push(book);
+          this.data.unshift(book);
           this.dataSource._updateChangeSubscription();
         });
     });
@@ -60,7 +59,6 @@ export class BookComponent implements OnInit {
   }
 
   edit(book: Book) {
-    console.log(book);
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.disableClose = true;
