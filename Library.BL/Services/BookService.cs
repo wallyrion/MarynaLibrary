@@ -8,10 +8,10 @@ namespace Library.BL.Services
 {
     public class BookService : IBookService
     {
-        private readonly IRepository<DAL.Models.Book> _bookRepository;
+        private readonly IBookRepository _bookRepository;
         private readonly IMapper _mapper;
 
-        public BookService(IRepository<DAL.Models.Book> bookRepository, IMapper mapper)
+        public BookService(IBookRepository bookRepository, IMapper mapper)
         {
             _bookRepository = bookRepository;
             _mapper = mapper;
@@ -42,6 +42,14 @@ namespace Library.BL.Services
         {
             var book = _mapper.Map<DAL.Models.Book>(bookModel);
             _bookRepository.Update(book);
+        }
+
+        public List<Book> Search(string value)
+        {
+            var books = _bookRepository.SearchBooks(value);
+            var bookModels = _mapper.Map<List<Book>>(books);
+
+            return bookModels;
         }
     }
 }

@@ -12,5 +12,7 @@ namespace Library.BL.Interfaces
         int Create(Book book);
 
         void Edit(Book book);
+
+        List<Book> Search(string value);
     }
 }
