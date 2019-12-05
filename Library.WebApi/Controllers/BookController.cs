@@ -29,7 +29,16 @@ namespace Library.WebApi.Controllers
             return Ok(id);
         }
 
-        [HttpDelete("remove/{id}")]
+        [HttpPut("Edit")]
+        public IActionResult Edit([FromBody] Book book)
+        {
+            _bookService.Edit(book);
+
+            return Ok();
+        }
+
+
+        [HttpDelete("Remove/{id}")]
         public IActionResult Remove(int id)
         {
             _bookService.Remove();

@@ -18,12 +18,17 @@ namespace Library.BL.Services
 
         public void Remove()
         {
-            throw new System.NotImplementedException();
         }
 
         public int Create(Book book)
         {
             return 12;
+            throw new System.NotImplementedException();
+        }
+
+        public void Edit(Book book)
+        {
+            return;
             throw new System.NotImplementedException();
         }
     }
