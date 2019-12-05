@@ -3,27 +3,27 @@ GO
 
 USE Library;
 
-CREATE TABLE Reader(
+CREATE TABLE Readers(
 Id int IDENTITY NOT NULL PRIMARY KEY,
-FirstName VARCHAR(75) NOT NULL,
-LastName VARCHAR(75) NOT NULL,
-Phone Varchar(50) NOT NULL UNIQUE);
+FirstName NVARCHAR(75) NOT NULL,
+LastName NVARCHAR(75) NOT NULL,
+Phone NVarchar(50) NOT NULL UNIQUE);
 
-CREATE TABLE Book(
+CREATE TABLE Books(
 Id INT IDENTITY NOT NULL PRIMARY KEY,
-Author VARCHAR(200) NOT NULL,
-Title VARCHAR(200) NOT NULL,
+Author NVARCHAR(200) NOT NULL,
+Title NVARCHAR(200) NOT NULL,
 Quantity INT NOT NULL);
 
-CREATE TABLE LibraryCard(
+CREATE TABLE LibraryCards(
 Id INT IDENTITY NOT NULL PRIMARY KEY,
-ReaderId INT FOREIGN KEY REFERENCES Reader(Id) NOT NULL,
-BookId INT FOREIGN KEY REFERENCES Book(Id) NOT NULL,
+ReaderId INT FOREIGN KEY REFERENCES Readers(Id) NOT NULL,
+BookId INT FOREIGN KEY REFERENCES Books(Id) NOT NULL,
 GivenDate DATETIME NOT NULL,
 ScheduleReturnDate DATETIME NOT NULL,
 ReturnDate DATETIME NULL);
 
-INSERT INTO Book(Author, Title, Quantity)
+INSERT INTO Books(Author, Title, Quantity)
 VALUES
 ('Дж. Роулинг', 'Гарри Поттер и Философский камень', 2),
 ('Дж. Роулинг', 'Гарри Поттер и Тайная комната', 3),
@@ -33,7 +33,7 @@ VALUES
 ('Дж. Роулинг', 'Гарри Поттер и Принц Полукровка', 7),
 ('Дж. Роулинг', 'Гарри Поттер и Дары Смерти', 7)
 
-INSERT INTO Reader(FirstName, LastName, Phone)
+INSERT INTO Readers(FirstName, LastName, Phone)
 VALUES
 ('Гарри', 'Поттер','+380509170380'),
 ('Генрих', 'Четвертый','+38050716670'),
