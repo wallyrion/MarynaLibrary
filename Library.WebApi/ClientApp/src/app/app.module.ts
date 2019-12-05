@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -12,6 +11,8 @@ import { MaterialModulesModule } from './material-modules/material-modules.modul
 import { BookComponent } from './book/book.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CreateBookModalComponent } from './create-book-modal/create-book-modal.component';
+import { CreateReaderModalComponent } from './create-reader-modal/create-reader-modal.component';
+import { ReaderComponent } from './reader/reader.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,9 @@ import { CreateBookModalComponent } from './create-book-modal/create-book-modal.
     NavMenuComponent,
     HomeComponent,
     BookComponent,
-    CreateBookModalComponent
+    CreateBookModalComponent,
+    CreateReaderModalComponent,
+    ReaderComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -31,7 +34,8 @@ import { CreateBookModalComponent } from './create-book-modal/create-book-modal.
     BrowserAnimationsModule
   ],
   entryComponents: [
-    CreateBookModalComponent
+    CreateBookModalComponent,
+    CreateReaderModalComponent
   ],
   providers: [],
   bootstrap: [
