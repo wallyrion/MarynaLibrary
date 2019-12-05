@@ -6,4 +6,12 @@
     <RootNamespace>Library.BL</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Library.DAL\Library.DAL.csproj" />
+  </ItemGroup>
+
 </Project>
