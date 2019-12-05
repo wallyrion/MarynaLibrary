@@ -15,7 +15,7 @@ namespace Library.WebApi.Controllers
             _bookService = bookService;
         }
 
-        [HttpGet]
+        [HttpGet("GetAll")]
         public List<Book> GetAll()
         {
             return _bookService.GetAll();

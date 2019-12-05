@@ -1,0 +1,23 @@
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" class="w-100" matSort>
+    <ng-container matColumnDef="author">
+      <th class="table-header" mat-header-cell *matHeaderCellDef mat-sort-header> Author </th>
+      <td class="table-first-cell" mat-cell *matCellDef="let element">{{element.author}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="title">
+      <th class="table-header" mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+      <td class="table-first-cell" mat-cell *matCellDef="let element">{{element.title}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="quantity">
+      <th class="table-header" mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </th>
+      <td class="table-first-cell" mat-cell *matCellDef="let element">{{element.quantity}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSize]="pageSize"></mat-paginator>
+
+</div>
