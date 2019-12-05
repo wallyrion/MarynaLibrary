@@ -23,7 +23,7 @@ namespace Library.DAL.Repositories
             using (var connection = new SqlConnection(_context.ConnectionString))
             {
                 connection.Open();
-                var result = connection.Query<Reader>("[dbo].[spGetAllBooks]", commandType: CommandType.StoredProcedure);
+                var result = connection.Query<Reader>("[dbo].[spGetAllReaders]", commandType: CommandType.StoredProcedure);
 
                 return result.ToList();
             }
