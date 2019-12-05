@@ -33,9 +33,9 @@ namespace Library.DAL.Repositories
         {
             var parameters = new DynamicParameters();
             parameters.Add("Author", entity.Author);
-            parameters.Add("NewId", direction: ParameterDirection.Output);
             parameters.Add("Title", entity.Title);
-            parameters.Add("Quantity", entity.Quantity);
+            parameters.Add("Quantity", entity.Quantity, DbType.Int32);
+            parameters.Add("NewId", direction: ParameterDirection.Output, dbType:DbType.Int32);
 
             using (var connection = new SqlConnection(_context.ConnectionString))
             {
