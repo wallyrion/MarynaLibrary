@@ -6,8 +6,4 @@
     <RootNamespace>Library.BL</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
-
 </Project>

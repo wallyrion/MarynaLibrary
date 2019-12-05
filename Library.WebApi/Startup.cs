@@ -1,3 +1,5 @@
+using Library.BL.Interfaces;
+using Library.BL.Services;
 using Library.DAL.Dapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -22,6 +24,9 @@ namespace Library.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddTransient<IBookService, BookService>();
+            
 
             services.AddTransient(options => new Context(Configuration.GetConnectionString("DefaultConnection")));
 
