@@ -12,14 +12,7 @@ namespace Library.BL.Services
             {
                 new Book {Author = "fewrw", Id = 52, Quantity = 31, Title = "wertew"},
                 new Book {Author = "fewrw", Id = 52, Quantity = 31, Title = "wertew"},
-                new Book {Author = "fewrw", Id = 52, Quantity = 31, Title = "wertew"},
-                new Book {Author = "fewrw", Id = 52, Quantity = 31, Title = "wertew"},
-                new Book {Author = "fewrw", Id = 52, Quantity = 31, Title = "wertew"},
-                new Book {Author = "fewrw", Id = 52, Quantity = 31, Title = "wertew"},
-                new Book {Author = "fewrw", Id = 52, Quantity = 31, Title = "wertew"},
-                new Book {Author = "fewrw", Id = 52, Quantity = 31, Title = "wertew"},
-                new Book {Author = "fewrw", Id = 52, Quantity = 31, Title = "wertew"},
-                new Book {Author = "fewrw", Id = 52, Quantity = 31, Title = "wertew"},
+
             };
         }
 
@@ -28,8 +21,9 @@ namespace Library.BL.Services
             throw new System.NotImplementedException();
         }
 
-        public void Create(Book book)
+        public int Create(Book book)
         {
+            return 12;
             throw new System.NotImplementedException();
         }
     }

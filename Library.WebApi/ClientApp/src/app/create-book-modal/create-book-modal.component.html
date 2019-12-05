@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>
+  Create book
+</h2>
+
+<mat-dialog-content class="dialog-content">
+  <mat-card>
+    <form [formGroup]="form" (ngSubmit)="save()">
+      <mat-form-field class="d-block">
+        <input matInput placeholder="Title" formControlName="title">
+      </mat-form-field>
+      <mat-form-field class="d-block">
+        <input matInput placeholder="Author" formControlName="author">
+      </mat-form-field>
+      <mat-form-field class="d-block">
+        <input matInput placeholder="Quantity" formControlName="quantity">
+      </mat-form-field>
+
+    </form>
+  </mat-card>
+
+
+</mat-dialog-content>
+
+<mat-dialog-actions class="mt-2">
+  <button mat-button class="mat-raised-button mat-primary" (click)="save()">Save</button>
+  <button mat-button class="mat-raised-button" (click)="close()">Close</button>
+</mat-dialog-actions>

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Library.DAL.Dapper;
-using Library.DAL.Entities;
+using Library.DAL.Models;
 
 namespace Library.DAL
 {

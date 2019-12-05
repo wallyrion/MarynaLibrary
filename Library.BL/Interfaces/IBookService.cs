@@ -9,6 +9,6 @@ namespace Library.BL.Interfaces
 
         void Remove();
 
-        void Create(Book book);
+        int Create(Book book);
     }
 }
