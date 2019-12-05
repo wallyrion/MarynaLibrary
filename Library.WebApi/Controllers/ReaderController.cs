@@ -1,28 +1,41 @@
 using System.Collections.Generic;
+using Library.BL.Interfaces;
 using Library.BL.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Library.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     public class ReaderController : Controller
     {
+        private readonly IReaderService _readerService;
+
+        public ReaderController(IReaderService readerService)
+        {
+            _readerService = readerService;
+        }
+
         [HttpGet]
         public List<Reader> GetAll()
         {
-            var list = new List<Reader>();
-            return list;
+            var readers = _readerService.GetAll();
+
+            return readers;
         }
 
         [HttpPost]
-        public IActionResult CreateRecord()
+        public IActionResult Create([FromBody]Reader reader)
         {
-            return Ok();
+            var id = _readerService.Create(reader);
+
+            return Ok(id);
         }
 
-        [HttpDelete("Remove/{id}")]
+        [HttpDelete("{id}")]
         public IActionResult Remove(int id)
         {
+            _readerService.Remove(id);
+
             return Ok();
         }
     }

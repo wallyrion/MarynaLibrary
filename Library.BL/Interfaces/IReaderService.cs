@@ -5,7 +5,7 @@ namespace Library.BL.Interfaces
 {
     public interface IReaderService
     {
-        List<Book> GetAll();
+        List<Reader> GetAll();
 
         void Remove(int id);
 

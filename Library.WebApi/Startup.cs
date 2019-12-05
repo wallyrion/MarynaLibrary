@@ -5,7 +5,6 @@ using Library.DAL.Dapper;
 using Library.DAL.Interfaces;
 using Library.DAL.Models;
 using Library.DAL.Repositories;
-using Library.WebApi.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +30,7 @@ namespace Library.WebApi
             services.AddTransient<IRepository<Reader>, ReaderRepository>();
             services.AddTransient<IRepository<LibraryCard>, LibraryCardRepository>();
             services.AddTransient<IBookService, BookService>();
+            services.AddTransient<IReaderService, ReaderService>();
             services.AddTransient(options => new Context(Configuration.GetConnectionString("DefaultConnection")));
             services.AddAutoMapper(typeof(Startup));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
