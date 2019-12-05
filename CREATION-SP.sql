@@ -10,7 +10,7 @@ AS
   BEGIN
     INSERT Books(Author, Title, Quantity) SELECT @Author, @Title, @Quantity;
     SET @NewId = SCOPE_IDENTITY();
-  END;
+  END
 GO
 
 CREATE PROCEDURE spCreateReader
