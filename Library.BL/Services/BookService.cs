@@ -8,7 +8,19 @@ namespace Library.BL.Services
     {
         public List<Book> GetAll()
         {
-            throw new System.NotImplementedException();
+            return new List<Book>
+            {
+                new Book {Author = "fewrw", Id = 52, Quantity = 31, Title = "wertew"},
+                new Book {Author = "fewrw", Id = 52, Quantity = 31, Title = "wertew"},
+                new Book {Author = "fewrw", Id = 52, Quantity = 31, Title = "wertew"},
+                new Book {Author = "fewrw", Id = 52, Quantity = 31, Title = "wertew"},
+                new Book {Author = "fewrw", Id = 52, Quantity = 31, Title = "wertew"},
+                new Book {Author = "fewrw", Id = 52, Quantity = 31, Title = "wertew"},
+                new Book {Author = "fewrw", Id = 52, Quantity = 31, Title = "wertew"},
+                new Book {Author = "fewrw", Id = 52, Quantity = 31, Title = "wertew"},
+                new Book {Author = "fewrw", Id = 52, Quantity = 31, Title = "wertew"},
+                new Book {Author = "fewrw", Id = 52, Quantity = 31, Title = "wertew"},
+            };
         }
 
         public void Remove()
