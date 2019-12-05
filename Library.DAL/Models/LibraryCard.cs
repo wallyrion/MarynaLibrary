@@ -10,6 +10,18 @@ namespace Library.DAL.Models
 
         public int BookId { get; set; }
 
+        public string Author { get; set; }
+
+        public string Title { get; set; }
+
+        public int Quantity { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public string Phone { get; set; }
+
         public DateTime GivenDate { get; set; }
 
         public DateTime ScheduleReturnDate { get; set; }
