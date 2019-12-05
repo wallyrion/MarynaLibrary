@@ -1,5 +1,5 @@
-<div class="mat-elevation-z8" *ngIf="dataSource.data && dataSource.data.length">
-  <table mat-table [dataSource]="dataSource" matSort>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" class="w-100" matSort>
     <ng-container matColumnDef="firstName">
       <th class="table-header" mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
       <td class="table-first-cell" mat-cell *matCellDef="let element">{{element.firstName}}</td>
