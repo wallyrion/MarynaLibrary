@@ -70,8 +70,9 @@ export class BookComponent implements OnInit {
       resBook.id = book.id;
       this._bookService.edit(resBook)
         .subscribe(() => {
-          book = resBook;
-          this.dataSource._updateChangeSubscription();
+          book.title = resBook.title;
+          book.quantity = resBook.quantity;
+          book.author = resBook.author;
         });
     });
   }
