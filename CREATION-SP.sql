@@ -12,3 +12,29 @@ AS
     SET @NewId = SCOPE_IDENTITY();
   END;
 GO
+
+CREATE PROCEDURE spCreateReader
+  @FirstName NVARCHAR(75),
+  @LastName NVARCHAR(75),
+  @Phone NVARCHAR(50),
+  @NewId INT = NULL OUTPUT
+AS
+  BEGIN
+    INSERT Readers(FirstName, LastName, Phone) SELECT @FirstName, @LastName, @Phone;
+    SET @NewId = SCOPE_IDENTITY();
+  END;
+GO
+
+CREATE PROCEDURE spCreateLibraryCard
+  @ReaderId INT,
+  @BookId INT,
+  @GivenDate DATETIME,
+  @ScheduleReturnDate DATETIME,
+  @NewId INT = NULL OUTPUT
+AS
+  BEGIN
+    INSERT LibraryCards(ReaderId, BookId, GivenDate, ScheduleReturnDate)
+    SELECT @ReaderId, @BookId, @GivenDate, @ScheduleReturnDate;
+    SET @NewId = SCOPE_IDENTITY();
+  END;
+GO
