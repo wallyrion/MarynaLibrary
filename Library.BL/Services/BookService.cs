@@ -17,12 +17,17 @@ namespace Library.BL.Services
 
         public void Remove(int id)
         {
-            throw new System.NotImplementedException();
         }
 
         public int Create(Book book)
         {
             return 0;
+        }
+
+        public void Edit(Book book)
+        {
+            return;
+            throw new System.NotImplementedException();
         }
     }
 }

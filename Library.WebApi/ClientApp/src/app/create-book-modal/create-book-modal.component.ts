@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { BookService } from '../services/book.service';
+import { Book } from '../models/book';
 
 @Component({
   selector: 'app-create-book-modal',
@@ -10,18 +11,23 @@ import { BookService } from '../services/book.service';
 })
 export class CreateBookModalComponent implements OnInit {
 
+  book: Book = <Book>{};
+
   form: FormGroup;
 
   constructor(
     private _formBuilder: FormBuilder,
-    private dialogRef: MatDialogRef<CreateBookModalComponent>
-    ) { }
+    private dialogRef: MatDialogRef<CreateBookModalComponent>,
+    @Inject(MAT_DIALOG_DATA) data
+  ) { 
+    this.book = data.book;
+  }
 
   ngOnInit() {
     this.form = this._formBuilder.group({
-      author: ['', Validators.required],
-      title: ['', Validators.required],
-      quantity: ['', Validators.required]
+      author: [this.book.author || '', Validators.required],
+      title: [this.book.title || '', Validators.required],
+      quantity: [this.book.quantity || '', Validators.required]
     });
   }
 

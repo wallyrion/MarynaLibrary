@@ -10,5 +10,7 @@ namespace Library.BL.Interfaces
         void Remove(int id);
 
         int Create(Book book);
+
+        void Edit(Book book);
     }
 }
