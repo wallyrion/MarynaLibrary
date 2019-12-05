@@ -13,7 +13,6 @@ export class BookService {
 
   constructor(private _http: HttpClient) { }
 
-
   public getAll(): Observable<Book[]> {
     return this._http.get<Book[]>(this.getAllBookUrl);
   }
