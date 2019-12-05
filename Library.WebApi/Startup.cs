@@ -28,7 +28,7 @@ namespace Library.WebApi
         {
             services.AddTransient<IRepository<Book>, BookRepository>();
             services.AddTransient<IRepository<Reader>, ReaderRepository>();
-            services.AddTransient<IRepository<LibraryCard>, LibraryCardRepository>();
+            services.AddTransient<ILibraryCardRepository, LibraryCardRepository>();
             services.AddTransient<IBookService, BookService>();
             services.AddTransient<IReaderService, ReaderService>();
             services.AddTransient(options => new Context(Configuration.GetConnectionString("DefaultConnection")));

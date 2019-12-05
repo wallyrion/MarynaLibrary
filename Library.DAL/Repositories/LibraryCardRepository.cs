@@ -9,7 +9,7 @@ using Library.DAL.Models;
 
 namespace Library.DAL.Repositories
 {
-    public class LibraryCardRepository : IRepository<LibraryCard>
+    public class LibraryCardRepository : ILibraryCardRepository
     {
         private readonly Context _context;
 
@@ -51,14 +51,18 @@ namespace Library.DAL.Repositories
             }
         }
 
-        public void Update(LibraryCard entity)
+        public void Update(int id)
         {
-            throw new System.NotImplementedException();
-        }
+            var parameters = new DynamicParameters();
+            parameters.Add("Id", id);
 
-        public void Remove(int id)
-        {
-            throw new System.NotImplementedException();
+            using (var connection = new SqlConnection(_context.ConnectionString))
+            {
+                connection.Open();
+                connection.Execute("[dbo].[spReturnBook]",
+                    parameters,
+                    commandType: CommandType.StoredProcedure);
+            }
         }
     }
 }
