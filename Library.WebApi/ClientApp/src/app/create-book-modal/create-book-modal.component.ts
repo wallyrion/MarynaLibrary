@@ -19,7 +19,7 @@ export class CreateBookModalComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<CreateBookModalComponent>,
     @Inject(MAT_DIALOG_DATA) data
-  ) { 
+  ) {
     this.book = data.book;
   }
 
