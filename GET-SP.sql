@@ -20,3 +20,25 @@ AS BEGIN
    INNER JOIN Books b ON b.Id = lc.BookId
 END
 GO
+
+CREATE PROCEDURE spSearchBook
+@Value NVARCHAR(200)
+AS BEGIN
+  SELECT b.*, SUM(lc.Quantity) as AvailableCount 
+  FROM Books b
+  LEFT JOIN LibraryCards lc ON lc.BookId = b.Id
+  WHERE b.Author LIKE(CONCAT('%', @Value, '%')) OR b.Title LIKE(CONCAT('%', @Value, '%'))
+  GROUP BY b.Id;
+END
+GO
+
+CREATE PROCEDURE spSearchReader
+@Value NVARCHAR(200)
+AS BEGIN
+  SELECT r.*, SUM(lc.Quantity) as AvailableCount 
+  FROM Readers r
+  LEFT JOIN LibraryCards lc ON lc.BookId = r.Id
+  WHERE r.FirstName LIKE(CONCAT('%', @Value, '%')) OR r.LastName LIKE(CONCAT('%', @Value, '%'))
+  GROUP BY r.Id;
+END
+GO

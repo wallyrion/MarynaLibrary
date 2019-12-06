@@ -8,10 +8,10 @@ namespace Library.BL.Services
 {
     public class ReaderService : IReaderService
     {
-        private readonly IRepository<DAL.Models.Reader> _readerRepository;
+        private readonly IReaderRepository _readerRepository;
         private readonly IMapper _mapper;
 
-        public ReaderService(IRepository<DAL.Models.Reader> readerRepository, IMapper mapper)
+        public ReaderService(IReaderRepository readerRepository, IMapper mapper)
         {
             _readerRepository = readerRepository;
             _mapper = mapper;
@@ -42,6 +42,14 @@ namespace Library.BL.Services
             var entity = _mapper.Map<DAL.Models.Reader>(reader);
 
             _readerRepository.Update(entity);
+        }
+
+        public List<Reader> Search(string value)
+        {
+            var readers = _readerRepository.Search(value);
+            var models = _mapper.Map<List<Reader>>(readers);
+
+            return models;
         }
     }
 }

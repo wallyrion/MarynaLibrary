@@ -9,7 +9,7 @@ using Library.DAL.Models;
 
 namespace Library.DAL.Repositories
 {
-    public class ReaderRepository : IRepository<Reader>
+    public class ReaderRepository : IReaderRepository
     {
         private readonly Context _context;
 
@@ -78,6 +78,20 @@ namespace Library.DAL.Repositories
                 connection.Execute("[dbo].[spDeleteReader]",
                     parameters,
                     commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public List<Reader> Search(string value)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("Value", value);
+
+            using (var connection = new SqlConnection(_context.ConnectionString))
+            {
+                connection.Open();
+                var result = connection.Query<Reader>("[dbo].[spSearchReader]", parameters, commandType: CommandType.StoredProcedure);
+
+                return result.ToList();
             }
         }
     }

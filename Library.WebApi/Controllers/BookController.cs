@@ -56,5 +56,14 @@ namespace Library.WebApi.Controllers
 
             return Ok();
         }
+
+
+        [HttpGet]
+        public List<Book> Search([FromQuery] string value)
+        {
+            var result = _bookService.Search(value);
+
+            return result;
+        }
     }
 }

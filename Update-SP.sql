@@ -38,7 +38,7 @@ CREATE PROCEDURE spReturnBook
 AS
   BEGIN
   UPDATE LibraryCards
-  SET ReturnDate = GETUTCDATE()
+  SET ReturnDate = GETDATE()
   WHERE Id = @Id;
   END
 GO

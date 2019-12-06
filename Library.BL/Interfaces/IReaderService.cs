@@ -12,5 +12,7 @@ namespace Library.BL.Interfaces
         int Create(Reader reader);
 
         void Edit(Reader reader);
+
+        List<Reader> Search(string value);
     }
 }
