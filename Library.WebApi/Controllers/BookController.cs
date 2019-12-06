@@ -50,19 +50,6 @@ namespace Library.WebApi.Controllers
         [HttpGet]
         public List<Book> Search([FromQuery] string value)
         {
-            return new List<Book>
-            {
-                new Book {Author = "alexey", Title = "ewtwt"},
-                new Book {Author = "alexey", Title = "ewtwt"},
-                new Book {Author = "alexey", Title = "ewtwt"},
-                new Book {Author = "alexey", Title = "ewtwt"},
-                new Book {Author = "alexey", Title = "ewtwt"},
-                new Book {Author = "alexey", Title = "ewtwt"},
-                new Book {Author = "alexey", Title = "ewtwt"},
-                new Book {Author = "alexey", Title = "ewtwt"},
-                new Book {Author = "alexey", Title = "ewtwt"}
-            };
-
             var result = _bookService.Search(value);
 
             return result;

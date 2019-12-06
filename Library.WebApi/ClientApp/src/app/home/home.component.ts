@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
 
   data: Card[] = []
   dataSource = new MatTableDataSource<Card>(this.data);
-  pageSize = 2;
+  pageSize = 20;
   displayedColumns: string[] = ['firstName', 'lastName', 'phone', 'author', 'title', 'givenDate', 'returnDate', 'action'];
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
     dialogConfig.data = {};
     const dialogRefBookModal = this._dialog.open(SelectBookModalComponent, dialogConfig);
     
-    let newRecord = <Card>{};
+    var newRecord = <Card>{};
     dialogRefBookModal.afterClosed().subscribe((book: Book) => {
       newRecord.bookId = book.id;
       newRecord.author = book.author;
@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
       newRecord.lastName = reader.lastName;
       newRecord.phone = reader.phone;
       newRecord.givenDate = new Date();
-      
+      newRecord.readerId = reader.id;
  
       this._service.createRecord(newRecord.readerId, newRecord.bookId).subscribe((id: number) => {
         newRecord.id = id;
@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit {
 }
 
   returnBook(record: Card) {
-    this._service.returnBook(record.bookId).subscribe(() => {
+    this._service.returnBook(record.id).subscribe(() => {
       record.returnDate = new Date();
     })
   }
@@ -66,6 +66,7 @@ export class HomeComponent implements OnInit {
 
     this._service.GetAll().subscribe((res: Card[]) => {
       this.dataSource.data = res;
+      this.data = res;
     });
 
   }

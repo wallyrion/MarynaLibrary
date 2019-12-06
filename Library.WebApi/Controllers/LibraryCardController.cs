@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Library.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     public class LibraryCardController : Controller
     {
         private readonly ILibraryService _libraryService;
@@ -24,14 +24,14 @@ namespace Library.WebApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateRecord(LibraryCard card)
+        public IActionResult CreateRecord([FromBody] LibraryCard card)
         {
             var newId = _libraryService.Create(card);
             return Ok(newId);
         }
 
-        [HttpDelete]
-        public IActionResult Return(int id)
+        [HttpPut]
+        public IActionResult Return([FromBody] int id)
         {
             _libraryService.ReturnBook(id);
             return Ok();

@@ -18,12 +18,6 @@ namespace Library.WebApi.Controllers
         [HttpGet]
         public List<Reader> GetAll()
         {
-            return new List<Reader>
-            {
-                new Reader{FirstName = "rewr", LastName = "rewrw", Phone = "4235"},
-                new Reader{FirstName = "rewr", LastName = "rewrw", Phone = "4235"},new Reader{FirstName = "rewr", LastName = "rewrw", Phone = "4235"}
-                
-            };
             var readers = _readerService.GetAll();
 
             return readers;
@@ -56,12 +50,6 @@ namespace Library.WebApi.Controllers
         [HttpGet]
         public List<Reader> Search([FromQuery] string value)
         {
-            return new List<Reader>
-            {
-                new Reader{FirstName = "rewr", LastName = "rewrw", Phone = "4235"},
-                new Reader{FirstName = "rewr", LastName = "rewrw", Phone = "4235"},new Reader{FirstName = "rewr", LastName = "rewrw", Phone = "4235"}
-
-            };
             var result = _readerService.Search(value);
 
             return result;

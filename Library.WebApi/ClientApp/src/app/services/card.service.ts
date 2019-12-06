@@ -7,7 +7,7 @@ import { Card } from '../models/book';
   providedIn: 'root'
 })
 export class CardService {
-  private getAllUrl = 'api/librarycard';
+  private getAllUrl = 'api/librarycard/GetAllRecords';
   private createRecordUrl = 'api/librarycard/createRecord'
   private returnBookUrl = 'api/librarycard/return'
 

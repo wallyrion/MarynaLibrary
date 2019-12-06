@@ -3,6 +3,7 @@ export interface Book {
     author: string;
     title: string;
     quantity: string;
+    availableCount?: number;
 }
 
 export interface Reader {
