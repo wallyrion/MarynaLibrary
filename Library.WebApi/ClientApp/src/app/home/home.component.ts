@@ -1,8 +1,9 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatSort, MatPaginator, MatTableDataSource, MatDialogConfig, MatDialog } from '@angular/material';
 import { CardService } from '../services/card.service';
-import { Card, Book } from '../models/book';
+import { Card, Book, Reader } from '../models/book';
 import { SelectBookModalComponent } from '../select-book-modal/select-book-modal.component';
+import { SelectReaderModalComponent } from '../select-reader-modal/select-reader-modal.component';
 
 @Component({
   selector: 'app-home',
@@ -30,18 +31,27 @@ export class HomeComponent implements OnInit {
     dialogConfig.data = {};
     const dialogRefBookModal = this._dialog.open(SelectBookModalComponent, dialogConfig);
     
-    const newRecord = <Card>{};
+    let newRecord = <Card>{};
     dialogRefBookModal.afterClosed().subscribe((book: Book) => {
       newRecord.bookId = book.id;
-
-      //const dialogRefReaderModal = this._dialog.open(SelectBookModalComponent, dialogConfig);
+      newRecord.author = book.author;
+      newRecord.title = book.title;
+      const dialogRefReaderModal = this._dialog.open(SelectReaderModalComponent, dialogConfig);
     
-      //const newRecord = <Card>{};
-      //dialogRefBookModal.afterClosed().subscribe((book: Book) => {
-        //newRecord.bookId = book.id;
+      dialogRefReaderModal.afterClosed().subscribe((reader: Reader) => {
+      newRecord.firstName = reader.firstName;
+      newRecord.lastName = reader.lastName;
+      newRecord.phone = reader.phone;
+      newRecord.givenDate = new Date();
+      
+      this.data.unshift(newRecord);
+      this.dataSource._updateChangeSubscription();
+      this._service.createRecord(newRecord.readerId, newRecord.bookId).subscribe(() => {
 
+      })
     });
-  }
+  });
+}
 
   returnBook(record: Card) {
 
@@ -51,7 +61,6 @@ export class HomeComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
 
-    debugger;
     this._service.GetAll().subscribe((res: Card[]) => {
       this.dataSource.data = res;
     });

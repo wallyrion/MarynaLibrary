@@ -9,10 +9,14 @@ import { Card } from '../models/book';
 export class CardService {
 
   private getAllUrl = 'api/librarycard';
-
+  private createRecordUrl = 'api/librarycard'
   constructor(private _http: HttpClient) { }
 
   GetAll(): Observable<Card[]> {
     return this._http.get<Card[]>(this.getAllUrl);
+  }
+
+  createRecord(readerId: number, bookId: number) {
+    return this._http.post(this.createRecordUrl, {readerId, bookId })
   }
 }

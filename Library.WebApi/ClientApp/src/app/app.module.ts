@@ -14,6 +14,7 @@ import { CreateBookModalComponent } from './create-book-modal/create-book-modal.
 import { CreateReaderModalComponent } from './create-reader-modal/create-reader-modal.component';
 import { ReaderComponent } from './reader/reader.component';
 import { SelectBookModalComponent } from './select-book-modal/select-book-modal.component';
+import { SelectReaderModalComponent } from './select-reader-modal/select-reader-modal.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SelectBookModalComponent } from './select-book-modal/select-book-modal.
     CreateBookModalComponent,
     CreateReaderModalComponent,
     ReaderComponent,
-    SelectBookModalComponent
+    SelectBookModalComponent,
+    SelectReaderModalComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -36,6 +38,7 @@ import { SelectBookModalComponent } from './select-book-modal/select-book-modal.
     BrowserAnimationsModule
   ],
   entryComponents: [
+    SelectReaderModalComponent,
     SelectBookModalComponent,
     CreateBookModalComponent,
     CreateReaderModalComponent

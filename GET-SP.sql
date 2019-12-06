@@ -28,7 +28,7 @@ AS BEGIN
   FROM Books b
   LEFT JOIN LibraryCards lc ON lc.BookId = b.Id
   WHERE b.Author LIKE(CONCAT('%', @Value, '%')) OR b.Title LIKE(CONCAT('%', @Value, '%'))
-  GROUP BY b.Id;
+  GROUP BY b.Id, lc.Quantity;
 END
 GO
 
@@ -37,7 +37,7 @@ CREATE PROCEDURE spSearchReader
 AS BEGIN
   SELECT r.*, SUM(lc.Quantity) as AvailableCount 
   FROM Readers r
-  LEFT JOIN LibraryCards lc ON lc.BookId = r.Id
+  LEFT JOIN LibraryCards lc ON lc.ReaderId = r.Id
   WHERE r.FirstName LIKE(CONCAT('%', @Value, '%')) OR r.LastName LIKE(CONCAT('%', @Value, '%'))
   GROUP BY r.Id;
 END
