@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { CreateBookModalComponent } from './create-book-modal/create-book-modal.component';
 import { CreateReaderModalComponent } from './create-reader-modal/create-reader-modal.component';
 import { ReaderComponent } from './reader/reader.component';
+import { SelectBookModalComponent } from './select-book-modal/select-book-modal.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ReaderComponent } from './reader/reader.component';
     BookComponent,
     CreateBookModalComponent,
     CreateReaderModalComponent,
-    ReaderComponent
+    ReaderComponent,
+    SelectBookModalComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -34,6 +36,7 @@ import { ReaderComponent } from './reader/reader.component';
     BrowserAnimationsModule
   ],
   entryComponents: [
+    SelectBookModalComponent,
     CreateBookModalComponent,
     CreateReaderModalComponent
   ],

@@ -11,6 +11,7 @@ export class BookService {
   private createBookUrl = 'api/book/create';
   private removeBookUrl = 'api/book/remove';
   private editBookUrl = 'api/book/edit';
+  private searchBookUrl = 'api/book/search';
 
   constructor(private _http: HttpClient) { }
 
@@ -28,5 +29,9 @@ export class BookService {
 
   public edit(book: Book) {
     return this._http.put(this.editBookUrl, book);
+  }
+
+  public search(field: string): Observable<Book[]> {
+    return this._http.get<Book[]>(`this.searchBookUrl/${field}`);
   }
 }

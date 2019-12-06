@@ -1,7 +1,8 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
-import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
-import { JournalService } from '../services/journal.service';
-import { Journal } from '../models/jornal';
+import { MatSort, MatPaginator, MatTableDataSource, MatDialogConfig, MatDialog } from '@angular/material';
+import { CardService } from '../services/card.service';
+import { Card, Book } from '../models/book';
+import { SelectBookModalComponent } from '../select-book-modal/select-book-modal.component';
 
 @Component({
   selector: 'app-home',
@@ -11,28 +12,48 @@ import { Journal } from '../models/jornal';
 })
 export class HomeComponent implements OnInit {
 
+  data: Card[] = []
+  dataSource = new MatTableDataSource<Card>(this.data);
+  pageSize = 2;
+  displayedColumns: string[] = ['firstName', 'lastName', 'phone', 'author', 'title', 'givenDate', 'returnDate', 'action'];
+
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
-  constructor(private _service: JournalService) {
+  constructor(private _service: CardService, private _dialog: MatDialog) {
   }
 
-  public dataSource = new MatTableDataSource<Journal>();
-  pageSize = 20;
-  displayedColumns: string[] = ['firstName', 'lastName', 'date'];
+  addRecord() {
+    const dialogConfig = new MatDialogConfig();
 
-  pageChange() {
+    dialogConfig.disableClose = true;
+    dialogConfig.data = {};
+    const dialogRefBookModal = this._dialog.open(SelectBookModalComponent, dialogConfig);
+    
+    const newRecord = <Card>{};
+    dialogRefBookModal.afterClosed().subscribe((book: Book) => {
+      newRecord.bookId = book.id;
+
+      //const dialogRefReaderModal = this._dialog.open(SelectBookModalComponent, dialogConfig);
+    
+      //const newRecord = <Card>{};
+      //dialogRefBookModal.afterClosed().subscribe((book: Book) => {
+        //newRecord.bookId = book.id;
+
+    });
+  }
+
+  returnBook(record: Card) {
 
   }
 
   ngOnInit(): void {
-    console.log('on init');
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
 
-    this._service.getJournal().subscribe((res: Journal[]) => {
-      console.log('res', res);
+    debugger;
+    this._service.GetAll().subscribe((res: Card[]) => {
       this.dataSource.data = res;
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
     });
 
   }

@@ -21,6 +21,17 @@ namespace Library.WebApi.Controllers
             return _bookService.GetAll();
         }
 
+        [HttpGet("{searchField}")]
+        public List<Book> Search(string searchField)
+        {
+            return new List<Book>
+            {
+                new Book {Author = "alexey", Title = "ewtwt"},
+                new Book {Author = "alexey", Title = "ewtwt"},
+                new Book {Author = "alexey", Title = "ewtwt"}
+            };
+        }
+
         [HttpPost]
         public IActionResult Create([FromBody] Book book)
         {
