@@ -44,17 +44,20 @@ export class HomeComponent implements OnInit {
       newRecord.phone = reader.phone;
       newRecord.givenDate = new Date();
       
-      this.data.unshift(newRecord);
-      this.dataSource._updateChangeSubscription();
-      this._service.createRecord(newRecord.readerId, newRecord.bookId).subscribe(() => {
-
+ 
+      this._service.createRecord(newRecord.readerId, newRecord.bookId).subscribe((id: number) => {
+        newRecord.id = id;
+        this.data.unshift(newRecord);
+        this.dataSource._updateChangeSubscription();
       })
     });
   });
 }
 
   returnBook(record: Card) {
-
+    this._service.returnBook(record.bookId).subscribe(() => {
+      record.returnDate = new Date();
+    })
   }
 
   ngOnInit(): void {

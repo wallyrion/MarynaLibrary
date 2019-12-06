@@ -35,8 +35,6 @@ namespace Library.DAL.Repositories
             parameters.Add("ReaderId", card.ReaderId);
             parameters.Add("NewId", direction: ParameterDirection.Output);
             parameters.Add("BookId", card.BookId);
-            parameters.Add("ScheduleReturnDate", card.ScheduleReturnDate);
-            parameters.Add("Quantity", card.Quantity);
 
             using (var connection = new SqlConnection(_context.ConnectionString))
             {
