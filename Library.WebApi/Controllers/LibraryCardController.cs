@@ -20,7 +20,7 @@ namespace Library.WebApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateRecord()
+        public IActionResult CreateRecord(LibraryCard card)
         {
             return Ok();
         }
