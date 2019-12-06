@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Library.BL.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -12,7 +13,33 @@ namespace Library.WebApi.Controllers
         {
             var list = new List<LibraryCard>
             {
-  
+                new LibraryCard
+                {
+                    FirstName = "FirstName", LastName = "LastName", Phone = "1231245",
+                    Id = 1, Author = "author", GivenDate = DateTime.UtcNow, Title = "title",
+                    
+                },
+                new LibraryCard
+                {
+                    FirstName = "FirstName", LastName = "LastName", Phone = "1231245",
+                    Id = 1, Author = "author", GivenDate = DateTime.UtcNow, Title = "title",
+
+                },
+                new LibraryCard
+                {
+                    FirstName = "FirstName", LastName = "LastName", Phone = "1231245",
+                    Id = 1, Author = "author", GivenDate = DateTime.UtcNow, Title = "title",
+
+                },
+                new LibraryCard
+                {
+                    FirstName = "FirstName", LastName = "LastName", Phone = "1231245",
+                    Id = 1, Author = "author", GivenDate = DateTime.UtcNow, Title = "title",
+
+                },
+
+
+
 
             };
 

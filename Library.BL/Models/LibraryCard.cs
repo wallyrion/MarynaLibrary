@@ -1,15 +1,33 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Library.BL.Models
 {
     public class LibraryCard
     {
-        public Reader Reader { get; set; }
+        public int Id { get; set; }
 
-        public List<Book> Books { get; set; }
+        public int ReaderId { get; set; }
 
-        public string FromDate { get; set; }
+        public int BookId { get; set; }
 
-        public string ToDate { get; set; }
+
+        public string Author { get; set; }
+
+        public string Title { get; set; }
+
+        public int Quantity { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public string Phone { get; set; }
+
+        public DateTime GivenDate { get; set; }
+
+        public DateTime ScheduleReturnDate { get; set; }
+
+        public DateTime? ReturnDate { get; set; }
     }
 }
