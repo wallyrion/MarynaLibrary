@@ -32,6 +32,6 @@ export class BookService {
   }
 
   public search(field: string): Observable<Book[]> {
-    return this._http.get<Book[]>(`this.searchBookUrl/${field}`);
+    return this._http.get<Book[]>(`${this.searchBookUrl}`,{params: {value: field}});
   }
 }

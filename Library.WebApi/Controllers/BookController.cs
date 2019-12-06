@@ -21,17 +21,6 @@ namespace Library.WebApi.Controllers
             return _bookService.GetAll();
         }
 
-        [HttpGet("{searchField}")]
-        public List<Book> Search(string searchField)
-        {
-            return new List<Book>
-            {
-                new Book {Author = "alexey", Title = "ewtwt"},
-                new Book {Author = "alexey", Title = "ewtwt"},
-                new Book {Author = "alexey", Title = "ewtwt"}
-            };
-        }
-
         [HttpPost]
         public IActionResult Create([FromBody] Book book)
         {
@@ -61,6 +50,19 @@ namespace Library.WebApi.Controllers
         [HttpGet]
         public List<Book> Search([FromQuery] string value)
         {
+            return new List<Book>
+            {
+                new Book {Author = "alexey", Title = "ewtwt"},
+                new Book {Author = "alexey", Title = "ewtwt"},
+                new Book {Author = "alexey", Title = "ewtwt"},
+                new Book {Author = "alexey", Title = "ewtwt"},
+                new Book {Author = "alexey", Title = "ewtwt"},
+                new Book {Author = "alexey", Title = "ewtwt"},
+                new Book {Author = "alexey", Title = "ewtwt"},
+                new Book {Author = "alexey", Title = "ewtwt"},
+                new Book {Author = "alexey", Title = "ewtwt"}
+            };
+
             var result = _bookService.Search(value);
 
             return result;

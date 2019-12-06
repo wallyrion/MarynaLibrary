@@ -13,7 +13,7 @@ export class SelectBookModalComponent implements OnInit {
   searchField = '';
   data: Book[] = [];
   dataSource = new MatTableDataSource<Book>(this.data);
-  pageSize = 2;
+  pageSize = 3;
   displayedColumns = ['author', 'title', 'quantity', 'action']
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
