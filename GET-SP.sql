@@ -24,21 +24,23 @@ GO
 CREATE PROCEDURE spSearchBook
 @Value NVARCHAR(200)
 AS BEGIN
-  SELECT b.*
+  SELECT b.*, b.Quantity - COALESCE(AvailableCount, 0)
   FROM Books b
-  OUTER JOIN LibraryCards lc ON lc.BookId = b.Id
+  OUTER APPLY(
+  SELECT COUNT(lc.Id) as AvailableCount
+  FROM LibraryCards lc
+  INNER JOIN Books b ON b.Id = lc.BookId 
+  WHERE lc.BookId = b.Id
+  GROUP BY lc.BookId) as lc
   WHERE b.Author LIKE(CONCAT('%', @Value, '%')) OR b.Title LIKE(CONCAT('%', @Value, '%'))
-  GROUP BY b.Id, lc.Quantity;
 END
 GO
 
 CREATE PROCEDURE spSearchReader
 @Value NVARCHAR(200)
 AS BEGIN
-  SELECT r.*, SUM(lc.Quantity) as AvailableCount 
+  SELECT r.*
   FROM Readers r
-  LEFT JOIN LibraryCards lc ON lc.ReaderId = r.Id
   WHERE r.FirstName LIKE(CONCAT('%', @Value, '%')) OR r.LastName LIKE(CONCAT('%', @Value, '%'))
-  GROUP BY r.Id;
 END
 GO

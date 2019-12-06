@@ -28,12 +28,11 @@ GO
 CREATE PROCEDURE spCreateLibraryCard
   @ReaderId INT,
   @BookId INT,
-  @Quantity INT,
   @NewId INT = NULL OUTPUT
 AS
   BEGIN
-    INSERT LibraryCards(ReaderId, BookId, GivenDate, Quantity)
-    SELECT @ReaderId, @BookId, GETDATE(), @Quantity;
+    INSERT LibraryCards(ReaderId, BookId, GivenDate)
+    SELECT @ReaderId, @BookId, GETDATE();
     SET @NewId = SCOPE_IDENTITY();
   END;
 GO
