@@ -8,6 +8,7 @@ namespace Library.WebApi.Controllers
     [Route("api/[controller]")]
     public class LibraryCardController : Controller
     {
+        private readonly IL
         [HttpGet]
         public List<LibraryCard> GetAllRecords()
         {
