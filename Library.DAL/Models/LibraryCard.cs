@@ -26,8 +26,6 @@ namespace Library.DAL.Models
 
         public DateTime GivenDate { get; set; }
 
-        public DateTime ScheduleReturnDate { get; set; }
-
         public DateTime? ReturnDate { get; set; }
     }
 }

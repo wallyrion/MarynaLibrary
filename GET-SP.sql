@@ -24,9 +24,9 @@ GO
 CREATE PROCEDURE spSearchBook
 @Value NVARCHAR(200)
 AS BEGIN
-  SELECT b.*, SUM(lc.Quantity) as AvailableCount 
+  SELECT b.*
   FROM Books b
-  LEFT JOIN LibraryCards lc ON lc.BookId = b.Id
+  OUTER JOIN LibraryCards lc ON lc.BookId = b.Id
   WHERE b.Author LIKE(CONCAT('%', @Value, '%')) OR b.Title LIKE(CONCAT('%', @Value, '%'))
   GROUP BY b.Id, lc.Quantity;
 END
