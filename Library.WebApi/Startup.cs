@@ -1,3 +1,4 @@
+using System;
 using AutoMapper;
 using Library.BL.Interfaces;
 using Library.BL.Services;
@@ -76,6 +77,7 @@ namespace Library.WebApi
 
                 if (env.IsDevelopment())
                 {
+                    spa.Options.StartupTimeout = new TimeSpan(0, 0, 100);
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
