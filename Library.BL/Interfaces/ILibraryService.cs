@@ -9,6 +9,6 @@ namespace Library.BL.Interfaces
 
         List<LibraryCard> GetAll();
 
-        void ReturnCard(int id);
+        void ReturnBook(int id);
     }
 }

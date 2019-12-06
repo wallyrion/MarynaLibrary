@@ -27,12 +27,15 @@ namespace Library.BL.Services
 
         public List<LibraryCard> GetAll()
         {
-            throw new System.NotImplementedException();
+            var cards = _libraryCardRepository.GetAll();
+            var cardsModels = _mapper.Map<List<LibraryCard>>(cards);
+
+            return cardsModels;
         }
 
-        public void ReturnCard(int id)
+        public void ReturnBook(int id)
         {
-            throw new System.NotImplementedException();
+            _libraryCardRepository.Update(id);
         }
     }
 }

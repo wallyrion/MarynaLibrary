@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Library.BL.Interfaces;
 using Library.BL.Models;
@@ -19,37 +18,7 @@ namespace Library.WebApi.Controllers
         [HttpGet]
         public List<LibraryCard> GetAllRecords()
         {
-            var list = new List<LibraryCard>
-            {
-                new LibraryCard
-                {
-                    FirstName = "FirstName", LastName = "LastName", Phone = "1231245",
-                    Id = 1, Author = "author", GivenDate = DateTime.UtcNow, Title = "title",
-                    
-                },
-                new LibraryCard
-                {
-                    FirstName = "FirstName", LastName = "LastName", Phone = "1231245",
-                    Id = 1, Author = "author", GivenDate = DateTime.UtcNow, Title = "title",
-
-                },
-                new LibraryCard
-                {
-                    FirstName = "FirstName", LastName = "LastName", Phone = "1231245",
-                    Id = 1, Author = "author", GivenDate = DateTime.UtcNow, Title = "title",
-
-                },
-                new LibraryCard
-                {
-                    FirstName = "FirstName", LastName = "LastName", Phone = "1231245",
-                    Id = 1, Author = "author", GivenDate = DateTime.UtcNow, Title = "title",
-
-                },
-
-
-
-
-            };
+            var list = _libraryService.GetAll();
 
             return list;
         }
@@ -64,7 +33,7 @@ namespace Library.WebApi.Controllers
         [HttpDelete]
         public IActionResult Return(int id)
         {
-            _libraryService.ReturnCard(id);
+            _libraryService.ReturnBook(id);
             return Ok();
         }
     }
