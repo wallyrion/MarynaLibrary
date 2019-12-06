@@ -63,6 +63,7 @@ export class BookComponent implements OnInit {
 
     dialogConfig.disableClose = true;
     dialogConfig.data = { book };
+
     const dialogRef = this._dialog.open(CreateBookModalComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe((resBook: Book) => {

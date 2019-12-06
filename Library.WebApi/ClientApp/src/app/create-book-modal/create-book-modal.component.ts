@@ -12,7 +12,7 @@ import { Book } from '../models/book';
 export class CreateBookModalComponent implements OnInit {
 
   book: Book = <Book>{};
-
+  isEdit: boolean = false;
   form: FormGroup;
 
   constructor(
@@ -21,6 +21,11 @@ export class CreateBookModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) data
   ) {
     this.book = data.book || {};
+    this.isEdit = data.book
+  }
+
+  get title(): string {
+    return this.isEdit ? 'Edit book' : 'Create book';
   }
 
   ngOnInit() {

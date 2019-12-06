@@ -1,0 +1,45 @@
+<h2 mat-dialog-title>
+  Search reader
+</h2>
+
+<mat-dialog-content class="dialog-content">
+  <mat-card>
+      <mat-form-field class="d-block">
+        <input matInput placeholder="First Name or Last Name or Phone" [(ngModel)]="searchField">
+      </mat-form-field>
+      <button class= mat-button class="mat-raised-button mat-primary" (click)="search()">search</button>
+  </mat-card>
+
+  <div class="mat-elevation-z8" [hidden]="!data.length">
+      <table mat-table [dataSource]="dataSource" class="w-100" matSort>
+        <ng-container matColumnDef="firstName">
+          <th class="table-header" mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
+          <td class="table-first-cell" mat-cell *matCellDef="let element">{{element.firstName}}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="lastName">
+          <th class="table-header" mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
+          <td class="table-first-cell" mat-cell *matCellDef="let element">{{element.lastName}}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="phone">
+          <th class="table-header" mat-header-cell *matHeaderCellDef mat-sort-header> Phone </th>
+          <td class="table-first-cell" mat-cell *matCellDef="let element">{{element.phone}}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef>  </th>
+          <td mat-cell *matCellDef="let element"> 
+            <button class="mr-1" mat-stroked-button (click)="select(element)" color="primary">Select</button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [pageSize]="pageSize"></mat-paginator>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions class="mt-2">
+  <button mat-button class="mat-raised-button" (click)="close()">Close</button>
+</mat-dialog-actions>

@@ -1,29 +1,29 @@
 import { Component, OnInit, Inject, Input, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
-import { Book, Card } from '../models/book';
+import { Book, Card, Reader } from '../models/book';
 import { BookService } from '../services/book.service';
+import { ReaderService } from '../services/reader.service';
 
 @Component({
-  selector: 'app-select-book-modal',
-  templateUrl: './select-book-modal.component.html',
-  styleUrls: ['./select-book-modal.component.scss']
+  selector: 'app-select-reader-modal',
+  templateUrl: './select-reader-modal.component.html',
+  styleUrls: ['./select-reader-modal.component.scss']
 })
-export class SelectBookModalComponent implements OnInit {
+export class SelectReaderModalComponent implements OnInit {
 
   searchField = '';
-  data: Book[] = [];
-  dataSource = new MatTableDataSource<Book>(this.data);
+  data: Reader[] = [];
+  dataSource = new MatTableDataSource<Reader>(this.data);
   pageSize = 3;
-  displayedColumns = ['author', 'title', 'quantity', 'action']
+  displayedColumns = ['firstName', 'lastName', 'phone', 'action']
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
+  reader: Reader = <Reader>{};
 
   constructor(
-    private dialogRef: MatDialogRef<SelectBookModalComponent>,
-    private _service: BookService,
-    @Inject(MAT_DIALOG_DATA) data
-  ) {
+    private dialogRef: MatDialogRef<SelectReaderModalComponent>,
+    private _service: ReaderService  ) {
   }
 
   ngOnInit() {
@@ -38,8 +38,8 @@ export class SelectBookModalComponent implements OnInit {
     })
   }
 
-  select(book: Book) {
-    this.dialogRef.close(book);
+  select(reader: Reader) {
+    this.dialogRef.close(reader);
   }
 
   close() {
