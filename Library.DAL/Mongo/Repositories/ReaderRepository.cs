@@ -10,12 +10,10 @@ namespace Library.DAL.Mongo.Repositories
 {
     public class ReaderRepository : IReaderRepository
     {
-        private readonly Context _context;
         private readonly IMongoCollection<Reader> _collection;
         public ReaderRepository(Context context)
         {
-            _context = context;
-            _collection = _context.GetCollection<Reader>();
+            _collection = context.GetCollection<Reader>();
         }
 
         public List<Reader> GetAll()

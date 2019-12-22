@@ -3,8 +3,8 @@ using AutoMapper;
 using Library.BL.Interfaces;
 using Library.BL.Services;
 using Library.DAL.Dapper;
-using Library.DAL.Dapper.Repositories;
-using Library.DAL.Interfaces;
+using Library.Infrastructure.Enums;
+using Library.Infrastructure.Registers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -26,13 +26,12 @@ namespace Library.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IBookRepository, BookRepository>();
-            services.AddTransient<IReaderRepository, ReaderRepository>();
-            services.AddTransient<ILibraryCardRepository, LibraryCardRepository>();
-            services.AddTransient<ILibraryService, LibraryService>();
-            services.AddTransient<IBookService, BookService>();
-            services.AddTransient<IReaderService, ReaderService>();
-            services.AddTransient(options => new Context(Configuration.GetConnectionString("SQLConnection")));
+            var type = Configuration.GetValue<string>("DbType");
+            RegisterStrategy.Register(Enum.Parse<DbType>(type), services);
+            services.AddScoped<ILibraryService, LibraryService>();
+            services.AddScoped<IBookService, BookService>();
+            services.AddScoped<IReaderService, ReaderService>();
+            services.AddScoped(options => new Context(Configuration.GetConnectionString("SQLConnection")));
             services.AddAutoMapper(typeof(Startup));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             // In production, the Angular files will be served from this directory
