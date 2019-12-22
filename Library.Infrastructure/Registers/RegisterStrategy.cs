@@ -10,7 +10,7 @@ namespace Library.Infrastructure.Registers
     {
         private static Dictionary<DbType, Lazy<IRegister>> _registers;
 
-        public RegisterStrategy()
+        static RegisterStrategy()
         {
             _registers = new Dictionary<DbType, Lazy<IRegister>>
             {
@@ -19,9 +19,9 @@ namespace Library.Infrastructure.Registers
             };
         }
 
-        public static void Register(DbType type, IServiceCollection services)
+        public static void Register(Settings settings, IServiceCollection services)
         {
-            _registers[type].Value.Register(services);
+            _registers[settings.DbType].Value.Register(services, settings);
         }
     }
 }

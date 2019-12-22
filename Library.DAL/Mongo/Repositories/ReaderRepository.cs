@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -23,7 +24,9 @@ namespace Library.DAL.Mongo.Repositories
 
         public int Create(Reader entity)
         {
-            throw new System.NotImplementedException();
+            entity.Id = Guid.NewGuid();
+            _collection.InsertOne(entity);
+            return 1;
         }
 
         public void Update(Reader entity)

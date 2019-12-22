@@ -3,6 +3,7 @@ using AutoMapper;
 using Library.BL.Interfaces;
 using Library.BL.Services;
 using Library.DAL.Dapper;
+using Library.Infrastructure;
 using Library.Infrastructure.Enums;
 using Library.Infrastructure.Registers;
 using Microsoft.AspNetCore.Builder;
@@ -11,12 +12,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MongoDB.Driver;
 
 namespace Library.WebApi
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IServiceProvider serviceProvider)
         {
             Configuration = configuration;
         }
@@ -26,12 +28,16 @@ namespace Library.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var type = Configuration.GetValue<string>("DbType");
-            RegisterStrategy.Register(Enum.Parse<DbType>(type), services);
+            services.AddSingleton(new Settings(Configuration));
+
+            ServiceProvider serviceProvider = services.BuildServiceProvider();
+            var settings = serviceProvider.GetRequiredService<Settings>();
+
+            RegisterStrategy.Register(settings, services);
             services.AddScoped<ILibraryService, LibraryService>();
             services.AddScoped<IBookService, BookService>();
             services.AddScoped<IReaderService, ReaderService>();
-            services.AddScoped(options => new Context(Configuration.GetConnectionString("SQLConnection")));
+
             services.AddAutoMapper(typeof(Startup));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             // In production, the Angular files will be served from this directory
