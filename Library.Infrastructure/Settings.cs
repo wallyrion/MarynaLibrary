@@ -7,10 +7,10 @@ namespace Library.Infrastructure
 {
     public class Settings
     {
-        private static Dictionary<DbType, string> Connections = new Dictionary<DbType, string>
+        private Dictionary<DbType, string> connections = new Dictionary<DbType, string>
         {
-            { DbType.Sql, "SQLConnection" },
-            { DbType.MongoDb, "MongoDbConnection" }
+            {DbType.Sql, "SQLConnection"},
+            {DbType.MongoDb, "MongoDbConnection"}
         };
 
         public Settings(IConfiguration configuration)
@@ -18,17 +18,15 @@ namespace Library.Infrastructure
             var type = configuration["DbType"];
             var dbType = Enum.Parse<DbType>(type);
 
-
-            ConnectionString = configuration[""];
+            DbType = dbType;
+            ConnectionString = configuration[connections[dbType]];
+            DbName = configuration["DbType"];
         }
 
-
-        public string ConnectionString { get;}
+        public string ConnectionString { get; }
 
         public string DbName { get; }
 
         public DbType DbType { get; }
-
-
     }
 }
