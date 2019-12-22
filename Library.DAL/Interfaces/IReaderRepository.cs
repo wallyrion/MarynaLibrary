@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Library.DAL.Dapper.Models;
+using Library.DAL.Models;
 
 namespace Library.DAL.Interfaces
 {

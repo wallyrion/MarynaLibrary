@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Library.DAL.Dapper.Models;
+using Library.DAL.Models;
 
 namespace Library.WebApi.Infrastructure
 {

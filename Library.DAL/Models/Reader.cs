@@ -1,8 +1,7 @@
 ﻿using System;
-using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Library.DAL.Dapper.Models
+namespace Library.DAL.Models
 {
     public class Reader
     {

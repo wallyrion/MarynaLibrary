@@ -32,14 +32,14 @@ namespace Library.BL.Services
 
         public int Create(Reader reader)
         {
-            var entity = _mapper.Map<DAL.Dapper.Models.Reader>(reader);
+            var entity = _mapper.Map<DAL.Models.Reader>(reader);
 
             return _readerRepository.Create(entity);
         }
 
         public void Edit(Reader reader)
         {
-            var entity = _mapper.Map<DAL.Dapper.Models.Reader>(reader);
+            var entity = _mapper.Map<DAL.Models.Reader>(reader);
 
             _readerRepository.Update(entity);
         }

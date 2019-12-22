@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using Library.DAL.Dapper.Models;
 using Library.DAL.Interfaces;
+using Library.DAL.Models;
 using MongoDB.Driver;
 
 namespace Library.DAL.Mongo.Repositories

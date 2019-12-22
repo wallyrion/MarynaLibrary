@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using Dapper;
 using Library.DAL.Interfaces;
-using Library.DAL.Dapper.Models;
+using Library.DAL.Models;
 
 namespace Library.DAL.Dapper.Repositories
 {

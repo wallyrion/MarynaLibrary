@@ -3,8 +3,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Dapper;
-using Library.DAL.Dapper.Models;
 using Library.DAL.Interfaces;
+using Library.DAL.Models;
 
 namespace Library.DAL.Mongo.Repositories
 {
