@@ -1,4 +1,4 @@
-﻿namespace Library.DAL.Models
+﻿namespace Library.DAL.Dapper.Models
 {
     public class Book
     {

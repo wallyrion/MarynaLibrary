@@ -32,7 +32,7 @@ namespace Library.BL.Services
 
         public int Create(Book bookModel)
         {
-            var book = _mapper.Map<DAL.Models.Book>(bookModel);
+            var book = _mapper.Map<DAL.Dapper.Models.Book>(bookModel);
             var id = _bookRepository.Create(book);
 
             return id;
@@ -40,7 +40,7 @@ namespace Library.BL.Services
 
         public void Edit(Book bookModel)
         {
-            var book = _mapper.Map<DAL.Models.Book>(bookModel);
+            var book = _mapper.Map<DAL.Dapper.Models.Book>(bookModel);
             _bookRepository.Update(book);
         }
 

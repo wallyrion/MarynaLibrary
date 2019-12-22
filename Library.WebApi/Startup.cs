@@ -3,9 +3,8 @@ using AutoMapper;
 using Library.BL.Interfaces;
 using Library.BL.Services;
 using Library.DAL.Dapper;
+using Library.DAL.Dapper.Repositories;
 using Library.DAL.Interfaces;
-using Library.DAL.Models;
-using Library.DAL.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -33,7 +32,7 @@ namespace Library.WebApi
             services.AddTransient<ILibraryService, LibraryService>();
             services.AddTransient<IBookService, BookService>();
             services.AddTransient<IReaderService, ReaderService>();
-            services.AddTransient(options => new Context(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddTransient(options => new Context(Configuration.GetConnectionString("SQLConnection")));
             services.AddAutoMapper(typeof(Startup));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             // In production, the Angular files will be served from this directory

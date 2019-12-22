@@ -3,11 +3,10 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Dapper;
-using Library.DAL.Dapper;
 using Library.DAL.Interfaces;
-using Library.DAL.Models;
+using Library.DAL.Dapper.Models;
 
-namespace Library.DAL.Repositories
+namespace Library.DAL.Dapper.Repositories
 {
     public class LibraryCardRepository : ILibraryCardRepository
     {

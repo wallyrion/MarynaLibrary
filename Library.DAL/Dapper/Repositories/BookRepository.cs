@@ -3,44 +3,43 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Dapper;
-using Library.DAL.Dapper;
+using Library.DAL.Dapper.Models;
 using Library.DAL.Interfaces;
-using Library.DAL.Models;
 
-namespace Library.DAL.Repositories
+namespace Library.DAL.Dapper.Repositories
 {
-    public class ReaderRepository : IReaderRepository
+    public class BookRepository : IBookRepository
     {
         private readonly Context _context;
 
-        public ReaderRepository(Context context)
+        public BookRepository(Context context)
         {
             _context = context;
         }
 
-        public List<Reader> GetAll()
+        public List<Book> GetAll()
         {
             using (var connection = new SqlConnection(_context.ConnectionString))
             {
                 connection.Open();
-                var result = connection.Query<Reader>("[dbo].[spGetAllReaders]", commandType: CommandType.StoredProcedure);
+                var result = connection.Query<Book>("[dbo].[spGetAllBooks]", commandType: CommandType.StoredProcedure);
 
                 return result.ToList();
             }
         }
 
-        public int Create(Reader entity)
+        public int Create(Book entity)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("FirstName", entity.FirstName);
+            parameters.Add("Author", entity.Author);
+            parameters.Add("Title", entity.Title);
+            parameters.Add("Quantity", entity.Quantity, DbType.Int32);
             parameters.Add("NewId", direction: ParameterDirection.Output, dbType:DbType.Int32);
-            parameters.Add("LastName", entity.LastName);
-            parameters.Add("Phone", entity.Phone);
 
             using (var connection = new SqlConnection(_context.ConnectionString))
             {
                 connection.Open();
-                connection.Execute("[dbo].[spCreateReader]",
+                connection.Execute("[dbo].[spCreateBook]",
                     parameters,
                     commandType: CommandType.StoredProcedure);
 
@@ -50,18 +49,18 @@ namespace Library.DAL.Repositories
             }
         }
 
-        public void Update(Reader entity)
+        public void Update(Book entity)
         {
             var parameters = new DynamicParameters();
             parameters.Add("Id", entity.Id);
-            parameters.Add("FirstName", entity.FirstName);
-            parameters.Add("LastName", entity.LastName);
-            parameters.Add("Phone", entity.Phone);
+            parameters.Add("Author", entity.Author);
+            parameters.Add("Title", entity.Title);
+            parameters.Add("Quantity", entity.Quantity);
 
             using (var connection = new SqlConnection(_context.ConnectionString))
             {
                 connection.Open();
-                connection.Execute("[dbo].[spUpdateReader]",
+                connection.Execute("[dbo].[spUpdateBook]",
                     parameters,
                     commandType: CommandType.StoredProcedure);
             }
@@ -75,13 +74,13 @@ namespace Library.DAL.Repositories
             using (var connection = new SqlConnection(_context.ConnectionString))
             {
                 connection.Open();
-                connection.Execute("[dbo].[spDeleteReader]",
+                connection.Execute("[dbo].[spDeleteBook]",
                     parameters,
                     commandType: CommandType.StoredProcedure);
             }
         }
 
-        public List<Reader> Search(string value)
+        public List<Book> SearchBooks(string value)
         {
             var parameters = new DynamicParameters();
             parameters.Add("Value", value);
@@ -89,7 +88,7 @@ namespace Library.DAL.Repositories
             using (var connection = new SqlConnection(_context.ConnectionString))
             {
                 connection.Open();
-                var result = connection.Query<Reader>("[dbo].[spSearchReader]", parameters, commandType: CommandType.StoredProcedure);
+                var result = connection.Query<Book>("[dbo].[spSearchBook]", parameters, commandType: CommandType.StoredProcedure);
 
                 return result.ToList();
             }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Library.DAL.Models
+namespace Library.DAL.Dapper.Models
 {
     public class LibraryCard
     {

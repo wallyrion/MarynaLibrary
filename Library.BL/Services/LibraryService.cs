@@ -19,7 +19,7 @@ namespace Library.BL.Services
 
         public int Create(LibraryCard cardModel)
         {
-            var card = _mapper.Map<DAL.Models.LibraryCard>(cardModel);
+            var card = _mapper.Map<DAL.Dapper.Models.LibraryCard>(cardModel);
             var id = _libraryCardRepository.Create(card);
 
             return id;
