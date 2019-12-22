@@ -20,7 +20,7 @@ namespace Library.DAL.Mongo
 
         public IMongoCollection<TCollection> GetCollection<TCollection>() where TCollection : class
         {
-            return Database.GetCollection<TCollection>(nameof(TCollection));
+            return Database.GetCollection<TCollection>(typeof(TCollection).Name);
         }
     }
 }

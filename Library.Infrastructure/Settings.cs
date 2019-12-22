@@ -20,7 +20,7 @@ namespace Library.Infrastructure
 
             DbType = dbType;
             ConnectionString = configuration.GetConnectionString(connections[dbType]);
-            DbName = configuration["DbType"];
+            DbName = configuration["DbName"];
         }
 
         public string ConnectionString { get; }

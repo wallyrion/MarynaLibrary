@@ -1,7 +1,11 @@
-﻿namespace Library.DAL.Dapper.Models
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+
+namespace Library.DAL.Dapper.Models
 {
     public class Reader
     {
+        [BsonId]
         public int Id { get; set; }
 
         public string FirstName { get; set; }

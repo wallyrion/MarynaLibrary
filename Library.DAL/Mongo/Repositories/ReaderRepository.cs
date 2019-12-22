@@ -23,7 +23,8 @@ namespace Library.DAL.Mongo.Repositories
 
         public int Create(Reader entity)
         {
-            throw new System.NotImplementedException();
+            _collection.InsertOne(entity);
+            return 1;
         }
 
         public void Update(Reader entity)

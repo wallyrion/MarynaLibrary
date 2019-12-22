@@ -33,11 +33,10 @@ namespace Library.WebApi
             ServiceProvider serviceProvider = services.BuildServiceProvider();
             var settings = serviceProvider.GetRequiredService<Settings>();
 
-            RegisterStrategy.Register(settings.DbType, services);
+            RegisterStrategy.Register(settings, services);
             services.AddScoped<ILibraryService, LibraryService>();
             services.AddScoped<IBookService, BookService>();
             services.AddScoped<IReaderService, ReaderService>();
-            services.AddScoped(options => new Context(Configuration.GetConnectionString("SQLConnection")));
 
             services.AddAutoMapper(typeof(Startup));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
