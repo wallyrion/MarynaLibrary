@@ -2,7 +2,7 @@ USE Library;
 GO
 
 CREATE PROCEDURE spUpdateBook
-  @Id INT,
+  @Id UNIQUEIDENTIFIER,
   @Author NVARCHAR(200),
   @Title NVARCHAR(200),
   @Quantity INT
@@ -18,7 +18,7 @@ AS
 GO
 
 CREATE PROCEDURE spUpdateReader
-  @Id INT,
+  @Id UNIQUEIDENTIFIER,
   @FirstName NVARCHAR(75),
   @LastName NVARCHAR(75),
   @Phone NVARCHAR(50)
@@ -34,7 +34,7 @@ AS
 GO
 
 CREATE PROCEDURE spReturnBook
-  @Id INT
+  @Id UNIQUEIDENTIFIER
 AS
   BEGIN
   UPDATE LibraryCards

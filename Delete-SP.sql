@@ -2,7 +2,7 @@ USE Library;
 GO
 
 CREATE PROCEDURE spDeleteBook
-  @Id int
+  @Id UNIQUEIDENTIFIER
 AS
 BEGIN
   DELETE FROM Books
@@ -11,7 +11,7 @@ END
 GO
 
 CREATE PROCEDURE spDeleteReader
-  @Id int
+  @Id UNIQUEIDENTIFIER
 AS
 BEGIN
   DELETE FROM Readers
