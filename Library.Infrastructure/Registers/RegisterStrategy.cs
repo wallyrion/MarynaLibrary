@@ -10,7 +10,7 @@ namespace Library.Infrastructure.Registers
     {
         private static Dictionary<DbType, Lazy<IRegister>> _registers;
 
-        public RegisterStrategy()
+        static RegisterStrategy()
         {
             _registers = new Dictionary<DbType, Lazy<IRegister>>
             {

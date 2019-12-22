@@ -19,7 +19,7 @@ namespace Library.Infrastructure
             var dbType = Enum.Parse<DbType>(type);
 
             DbType = dbType;
-            ConnectionString = configuration[connections[dbType]];
+            ConnectionString = configuration.GetConnectionString(connections[dbType]);
             DbName = configuration["DbType"];
         }
 
