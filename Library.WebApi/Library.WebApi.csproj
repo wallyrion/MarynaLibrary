@@ -30,6 +30,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Library.BL\Library.BL.csproj" />
     <ProjectReference Include="..\Library.DAL\Library.DAL.csproj" />
+    <ProjectReference Include="..\Library.Infrastructure\Library.Infrastructure.csproj" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
