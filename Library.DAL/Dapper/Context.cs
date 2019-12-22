@@ -4,6 +4,8 @@
     {
         public string ConnectionString { get; }
 
+        public string DbName { get; set; }
+
         public Context(string connectionString)
         {
             ConnectionString = connectionString;
