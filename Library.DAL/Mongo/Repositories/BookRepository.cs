@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Dapper;
 using Library.DAL.Interfaces;
 using Library.DAL.Models;
 using MongoDB.Driver;
@@ -22,27 +18,26 @@ namespace Library.DAL.Mongo.Repositories
         public List<Book> SearchBooks(string value)
         {
             var cards = _context.Database.GetCollection<LibraryCard>(typeof(LibraryCard).Name).AsQueryable();
-
-            var books = cards.Where(c => c.ReturnDate == null)
-                .GroupJoin(
-                _collection.AsQueryable(),
-                c => c.BookId,
-                b => b.Id,
-                (c, cb) => new
-                {
-                    Book = cb.First(),
-                    Count = cb.Count()
-                })
-                .Select(cb => cb)
-                .ToList()
-                .Where(cb =>
-                    cb.Book.Author.Contains(value, StringComparison.InvariantCultureIgnoreCase)
-                    || cb.Book.Title.Contains(value, StringComparison.InvariantCultureIgnoreCase))
-                .Where(cb => cb.Count < cb.Book.Quantity)
-                .Select(b => b.Book)
+            var books = _collection
+                .AsQueryable()
+                .Where(b =>
+                    b.Author.Contains(value)
+                    || b.Title.Contains(value))
                 .ToList();
+            var selected = new List<Book>();
 
-            return books;
+            foreach (var b in books)
+            {
+                var count = cards.Where(c => b.Id == c.BookId && c.ReturnDate == null).ToList().Count;
+                b.AvailableCount = b.Quantity - count;
+
+                if (b.AvailableCount > 0)
+                {
+                    selected.Add(b);
+                }
+            }
+
+            return selected;
         }
     }
 }
