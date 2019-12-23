@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Library.DAL.Interfaces;
 using Library.DAL.Models;
+using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace Library.DAL.Mongo
@@ -30,12 +31,12 @@ namespace Library.DAL.Mongo
 
         public void Update(TEntity entity)
         {
-            throw new System.NotImplementedException();
+             _collection.ReplaceOne(new BsonDocument("_id", entity.Id), entity);
         }
 
         public void Remove(Guid id)
         {
-            throw new System.NotImplementedException();
+            _collection.DeleteOne(new BsonDocument("_id", id));
         }
     }
 }
