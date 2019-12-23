@@ -17,8 +17,4 @@
     <PackageReference Include="MongoDB.Driver.Core" Version="2.10.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Mongo\Models\" />
-  </ItemGroup>
-
 </Project>
