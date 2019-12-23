@@ -37,6 +37,7 @@ export class ReaderComponent implements OnInit {
   createReader() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
+    dialogConfig.data = {};
     const dialogRef = this._dialog.open(CreateReaderModalComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe((reader: Reader) => {
