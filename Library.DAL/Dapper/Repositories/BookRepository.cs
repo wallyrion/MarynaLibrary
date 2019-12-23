@@ -35,7 +35,7 @@ namespace Library.DAL.Dapper.Repositories
             parameters.Add("Author", entity.Author);
             parameters.Add("Title", entity.Title);
             parameters.Add("Quantity", entity.Quantity, DbType.Int32);
-            parameters.Add("NewId", direction: ParameterDirection.Output, dbType:DbType.Int32);
+            parameters.Add("NewId", direction: ParameterDirection.Output, dbType:DbType.Guid);
 
             using (var connection = new SqlConnection(_context.ConnectionString))
             {

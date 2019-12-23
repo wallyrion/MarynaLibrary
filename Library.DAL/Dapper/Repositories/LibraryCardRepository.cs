@@ -33,7 +33,7 @@ namespace Library.DAL.Dapper.Repositories
         {
             var parameters = new DynamicParameters();
             parameters.Add("ReaderId", card.ReaderId);
-            parameters.Add("NewId", direction: ParameterDirection.Output, dbType: DbType.Int32);
+            parameters.Add("NewId", direction: ParameterDirection.Output, dbType: DbType.Guid);
             parameters.Add("BookId", card.BookId);
 
             using (var connection = new SqlConnection(_context.ConnectionString))

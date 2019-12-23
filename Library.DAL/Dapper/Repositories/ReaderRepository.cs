@@ -33,7 +33,7 @@ namespace Library.DAL.Dapper.Repositories
         {
             var parameters = new DynamicParameters();
             parameters.Add("FirstName", entity.FirstName);
-            parameters.Add("NewId", direction: ParameterDirection.Output, dbType:DbType.Int32);
+            parameters.Add("NewId", direction: ParameterDirection.Output, dbType:DbType.Guid);
             parameters.Add("LastName", entity.LastName);
             parameters.Add("Phone", entity.Phone);
 

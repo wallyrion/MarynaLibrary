@@ -21,7 +21,7 @@ export class CreateBookModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) data
   ) {
     this.book = data.book || {};
-    this.isEdit = data.book
+    this.isEdit = data.book;
   }
 
   get title(): string {

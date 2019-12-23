@@ -11,7 +11,7 @@ import { Reader } from '../models/book';
 export class CreateReaderModalComponent implements OnInit {
 
   reader: Reader = <Reader>{};
-
+  isEdit: boolean = false;
   form: FormGroup;
 
   constructor(
@@ -19,7 +19,8 @@ export class CreateReaderModalComponent implements OnInit {
     private dialogRef: MatDialogRef<CreateReaderModalComponent>,
     @Inject(MAT_DIALOG_DATA) data
   ) {
-    this.reader = data && data.reader || {};
+    this.reader = data.reader || {};
+    this.isEdit = data.reader;
   }
 
   ngOnInit() {
@@ -28,6 +29,10 @@ export class CreateReaderModalComponent implements OnInit {
       lastName: [this.reader.lastName || '', Validators.required],
       phone: [this.reader.phone || '', Validators.required]
     });
+  }
+
+  get title(): string {
+    return this.isEdit ? 'Edit reader' : 'Create reader';
   }
 
   save() {
