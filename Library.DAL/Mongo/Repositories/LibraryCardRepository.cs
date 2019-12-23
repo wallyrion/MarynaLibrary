@@ -1,6 +1,8 @@
 ﻿using System;
 using Library.DAL.Interfaces;
 using Library.DAL.Models;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace Library.DAL.Mongo.Repositories
 {
@@ -12,7 +14,10 @@ namespace Library.DAL.Mongo.Repositories
 
         public void ReturnBook(Guid id)
         {
-            throw new NotImplementedException();
+            var libraryCard = _collection.FindSync(new BsonDocument("_id", id)).FirstOrDefault();
+            libraryCard.ReturnDate = DateTime.UtcNow;
+
+            Update(libraryCard);
         }
     }
 }

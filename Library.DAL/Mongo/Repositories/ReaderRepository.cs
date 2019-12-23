@@ -18,7 +18,11 @@ namespace Library.DAL.Mongo.Repositories
 
         public List<Reader> Search(string value)
         {
-            throw new System.NotImplementedException();
+            var books = _collection.AsQueryable()
+                .Where(m => m.FirstName.Contains(value) || m.LastName.Contains(value))
+                .ToList();
+
+            return books;
         }
     }
 }
