@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Library.BL.Interfaces;
 using Library.BL.Models;
@@ -31,7 +32,7 @@ namespace Library.WebApi.Controllers
         }
 
         [HttpPut]
-        public IActionResult Return([FromBody] int id)
+        public IActionResult Return([FromBody] Guid id)
         {
             _libraryService.ReturnBook(id);
             return Ok();

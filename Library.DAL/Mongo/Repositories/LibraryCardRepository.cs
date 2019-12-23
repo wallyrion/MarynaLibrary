@@ -1,65 +1,18 @@
-﻿using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using Dapper;
+﻿using System;
 using Library.DAL.Interfaces;
 using Library.DAL.Models;
 
 namespace Library.DAL.Mongo.Repositories
 {
-    public class LibraryCardRepository : ILibraryCardRepository
+    public class LibraryCardRepository : BaseMongoRepository<LibraryCard>, ILibraryCardRepository
     {
-        private readonly Dapper.Context _context;
-
-        public LibraryCardRepository(Dapper.Context context)
+        public LibraryCardRepository(Context context) : base(context)
         {
-            _context = context;
         }
 
-        public List<LibraryCard> GetAll()
+        public void ReturnBook(Guid id)
         {
-            using (var connection = new SqlConnection(_context.ConnectionString))
-            {
-                connection.Open();
-                var result = connection.Query<LibraryCard>("[dbo].[spGetLibraryCard]", commandType: CommandType.StoredProcedure);
-
-                return result.ToList();
-            }
-        }
-
-        public int Create(LibraryCard card)
-        {
-            var parameters = new DynamicParameters();
-            parameters.Add("ReaderId", card.ReaderId);
-            parameters.Add("NewId", direction: ParameterDirection.Output, dbType: DbType.Int32);
-            parameters.Add("BookId", card.BookId);
-
-            using (var connection = new SqlConnection(_context.ConnectionString))
-            {
-                connection.Open();
-                connection.Execute("[dbo].[spCreateLibraryCard]",
-                    parameters,
-                    commandType: CommandType.StoredProcedure);
-
-                var createdId = parameters.Get<int>("NewId");
-
-                return createdId;
-            }
-        }
-
-        public void Update(int id)
-        {
-            var parameters = new DynamicParameters();
-            parameters.Add("Id", id);
-
-            using (var connection = new SqlConnection(_context.ConnectionString))
-            {
-                connection.Open();
-                connection.Execute("[dbo].[spReturnBook]",
-                    parameters,
-                    commandType: CommandType.StoredProcedure);
-            }
+            throw new NotImplementedException();
         }
     }
 }

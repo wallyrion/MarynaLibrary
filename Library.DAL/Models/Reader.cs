@@ -3,7 +3,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Library.DAL.Models
 {
-    public class Reader
+    public class Reader : IEntity
     {
         [BsonId]
         public Guid Id { get; set; }

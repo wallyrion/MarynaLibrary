@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Library.DAL.Models;
 
 namespace Library.DAL.Interfaces
@@ -7,8 +8,8 @@ namespace Library.DAL.Interfaces
     {
         List<LibraryCard> GetAll();
 
-        int Create(LibraryCard card);
+        Guid Create(LibraryCard card);
 
-        void Update(int id);
+        void ReturnBook(Guid id);
     }
 }

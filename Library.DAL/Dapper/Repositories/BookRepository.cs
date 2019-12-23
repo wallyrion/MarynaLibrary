@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -28,7 +29,7 @@ namespace Library.DAL.Dapper.Repositories
             }
         }
 
-        public int Create(Book entity)
+        public Guid Create(Book entity)
         {
             var parameters = new DynamicParameters();
             parameters.Add("Author", entity.Author);
@@ -43,7 +44,7 @@ namespace Library.DAL.Dapper.Repositories
                     parameters,
                     commandType: CommandType.StoredProcedure);
 
-                var createdId = parameters.Get<int>("NewId");
+                var createdId = parameters.Get<Guid>("NewId");
 
                 return createdId;
             }
@@ -66,7 +67,7 @@ namespace Library.DAL.Dapper.Repositories
             }
         }
 
-        public void Remove(int id)
+        public void Remove(Guid id)
         {
             var parameters = new DynamicParameters();
             parameters.Add("Id", id);

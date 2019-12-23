@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -28,7 +29,7 @@ namespace Library.DAL.Dapper.Repositories
             }
         }
 
-        public int Create(LibraryCard card)
+        public Guid Create(LibraryCard card)
         {
             var parameters = new DynamicParameters();
             parameters.Add("ReaderId", card.ReaderId);
@@ -42,13 +43,13 @@ namespace Library.DAL.Dapper.Repositories
                     parameters,
                     commandType: CommandType.StoredProcedure);
 
-                var createdId = parameters.Get<int>("NewId");
+                var createdId = parameters.Get<Guid>("NewId");
 
                 return createdId;
             }
         }
 
-        public void Update(int id)
+        public void ReturnBook(Guid id)
         {
             var parameters = new DynamicParameters();
             parameters.Add("Id", id);

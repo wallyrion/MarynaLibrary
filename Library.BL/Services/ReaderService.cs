@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using AutoMapper;
 using Library.BL.Interfaces;
 using Library.BL.Models;
@@ -25,12 +26,12 @@ namespace Library.BL.Services
             return models;
         }
 
-        public void Remove(int id)
+        public void Remove(Guid id)
         {
             _readerRepository.Remove(id);
         }
 
-        public int Create(Reader reader)
+        public Guid Create(Reader reader)
         {
             var entity = _mapper.Map<DAL.Models.Reader>(reader);
 

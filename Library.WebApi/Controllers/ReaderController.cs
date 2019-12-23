@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Library.BL.Interfaces;
 using Library.BL.Models;
@@ -40,7 +41,7 @@ namespace Library.WebApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Remove(int id)
+        public IActionResult Remove(Guid id)
         {
             _readerService.Remove(id);
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Library.BL.Models;
 
 namespace Library.BL.Interfaces
@@ -7,9 +8,9 @@ namespace Library.BL.Interfaces
     {
         List<Reader> GetAll();
 
-        void Remove(int id);
+        void Remove(Guid id);
 
-        int Create(Reader reader);
+        Guid Create(Reader reader);
 
         void Edit(Reader reader);
 

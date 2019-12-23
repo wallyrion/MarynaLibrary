@@ -9,35 +9,12 @@ using MongoDB.Driver;
 
 namespace Library.DAL.Mongo.Repositories
 {
-    public class ReaderRepository : IReaderRepository
+    public class ReaderRepository : BaseMongoRepository<Reader>, IReaderRepository
     {
-        private readonly IMongoCollection<Reader> _collection;
-        public ReaderRepository(Context context)
+        public ReaderRepository(Context context) : base(context)
         {
-            _collection = context.GetCollection<Reader>();
         }
 
-        public List<Reader> GetAll()
-        {
-            return _collection.FindSync(_ => true).ToList();
-        }
-
-        public int Create(Reader entity)
-        {
-            entity.Id = Guid.NewGuid();
-            _collection.InsertOne(entity);
-            return 1;
-        }
-
-        public void Update(Reader entity)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void Remove(int id)
-        {
-            throw new System.NotImplementedException();
-        }
 
         public List<Reader> Search(string value)
         {

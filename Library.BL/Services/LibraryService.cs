@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using AutoMapper;
 using Library.BL.Interfaces;
 using Library.BL.Models;
@@ -17,7 +18,7 @@ namespace Library.BL.Services
             _mapper = mapper;
         }
 
-        public int Create(LibraryCard cardModel)
+        public Guid Create(LibraryCard cardModel)
         {
             var card = _mapper.Map<DAL.Models.LibraryCard>(cardModel);
             var id = _libraryCardRepository.Create(card);
@@ -33,9 +34,9 @@ namespace Library.BL.Services
             return cardsModels;
         }
 
-        public void ReturnBook(int id)
+        public void ReturnBook(Guid id)
         {
-            _libraryCardRepository.Update(id);
+            _libraryCardRepository.ReturnBook(id);
         }
     }
 }
