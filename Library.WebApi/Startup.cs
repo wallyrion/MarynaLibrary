@@ -18,7 +18,7 @@ namespace Library.WebApi
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration, IServiceProvider serviceProvider)
+        public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }

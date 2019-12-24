@@ -31,8 +31,8 @@ namespace Library.WebApi.Controllers
             return Ok(newId);
         }
 
-        [HttpPut]
-        public IActionResult Return([FromBody] Guid id)
+        [HttpPut("{id}")]
+        public IActionResult Return(Guid id)
         {
             _libraryService.ReturnBook(id);
             return Ok();

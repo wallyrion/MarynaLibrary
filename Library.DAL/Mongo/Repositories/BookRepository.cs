@@ -18,7 +18,7 @@ namespace Library.DAL.Mongo.Repositories
         public List<Book> SearchBooks(string value)
         {
             var cards = _context.Database.GetCollection<LibraryCard>(typeof(LibraryCard).Name).AsQueryable();
-            var books = _collection
+            var books = Collection
                 .AsQueryable()
                 .Where(b =>
                     b.Author.Contains(value)

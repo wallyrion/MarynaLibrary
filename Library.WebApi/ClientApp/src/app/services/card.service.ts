@@ -18,7 +18,7 @@ export class CardService {
   }
 
   returnBook(cardId: number) {
-    return this._http.put(this.returnBookUrl, cardId);
+    return this._http.put(`${this.returnBookUrl}/${cardId}`, null);
   }
   createRecord(readerId: number, bookId: number) {
     return this._http.post(this.createRecordUrl, {readerId, bookId })
