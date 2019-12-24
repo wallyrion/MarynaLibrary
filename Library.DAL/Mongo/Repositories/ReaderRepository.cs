@@ -19,7 +19,9 @@ namespace Library.DAL.Mongo.Repositories
         public List<Reader> Search(string value)
         {
             var books = Collection.AsQueryable()
-                .Where(m => m.FirstName.Contains(value) || m.LastName.Contains(value))
+                .Where(m => m.FirstName.Contains(value) ||
+                            m.LastName.Contains(value) ||
+                            m.Phone.Contains(value))
                 .ToList();
 
             return books;
