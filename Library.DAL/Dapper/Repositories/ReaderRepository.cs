@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading.Tasks;
 using Dapper;
 using Library.DAL.Interfaces;
 using Library.DAL.Models;
@@ -11,9 +12,9 @@ namespace Library.DAL.Dapper.Repositories
 {
     public class ReaderRepository : IReaderRepository
     {
-        private readonly Context _context;
+        private readonly SqlContext _context;
 
-        public ReaderRepository(Context context)
+        public ReaderRepository(SqlContext context)
         {
             _context = context;
         }
@@ -28,6 +29,40 @@ namespace Library.DAL.Dapper.Repositories
                 return result.ToList();
             }
         }
+
+
+        public async Task<Guid> CreateAsync(Reader entity)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("FirstName", entity.FirstName);
+            parameters.Add("NewId", direction: ParameterDirection.Output, dbType: DbType.Guid);
+            parameters.Add("LastName", entity.LastName);
+            parameters.Add("Phone", entity.Phone);
+
+            using (var connection = new SqlConnection(_context.ConnectionString))
+            {
+                connection.Open();
+                await connection.ExecuteAsync("[dbo].[spCreateReader]",
+                    parameters,
+                    commandType: CommandType.StoredProcedure);
+
+                var createdId = parameters.Get<Guid>("NewId");
+
+                return createdId;
+            }
+        }
+
+        public async Task<List<Reader>> GetAllAsync()
+        {
+            using (var connection = new SqlConnection(_context.ConnectionString))
+            {
+                connection.Open();
+                var result = await connection.QueryAsync<Reader>("[dbo].[spGetAllReaders]", commandType: CommandType.StoredProcedure);
+
+                return result.ToList();
+            }
+        }
+
 
         public Guid Create(Reader entity)
         {

@@ -1,4 +1,5 @@
 ﻿using System;
+using Library.DAL.Dapper;
 using Library.DAL.Interfaces;
 using Library.DAL.Models;
 using MongoDB.Bson;
@@ -8,9 +9,9 @@ namespace Library.DAL.Mongo.Repositories
 {
     public class LibraryCardRepository : BaseMongoRepository<LibraryCard>, ILibraryCardRepository
     {
-        private readonly Context _context;
+        private readonly MongoContext _context;
 
-        public LibraryCardRepository(Context context) : base(context)
+        public LibraryCardRepository(MongoContext context) : base(context)
         {
             _context = context;
         }

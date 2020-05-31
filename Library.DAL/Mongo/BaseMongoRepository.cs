@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Library.DAL.Dapper;
 using Library.DAL.Interfaces;
 using Library.DAL.Models;
 using MongoDB.Bson;
@@ -11,7 +13,7 @@ namespace Library.DAL.Mongo
     {
         protected readonly IMongoCollection<TEntity> Collection;
 
-        public BaseMongoRepository(Context context)
+        public BaseMongoRepository(MongoContext context)
         {
             Collection = context.GetCollection<TEntity>();
         }
@@ -21,6 +23,18 @@ namespace Library.DAL.Mongo
             return Collection.FindSync(_ => true).ToList();
 
         }
+
+        public async Task<List<TEntity>> GetAllAsync()
+        {
+            var a = await Collection.FindAsync(_ => true);
+            return a.ToList();
+        }
+
+        public Task<Guid> CreateAsync(TEntity entity)
+        {
+            throw new NotImplementedException();
+        }
+
 
         public virtual Guid Create(TEntity entity)
         {

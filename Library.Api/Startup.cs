@@ -31,7 +31,9 @@ namespace Library.Api
             RegisterStrategy.Register(settings, services);
             services.AddScoped<ILibraryService, LibraryService>();
             services.AddScoped<IBookService, BookService>();
-            services.AddScoped<IReaderService, ReaderService>(); 
+            services.AddScoped<IReaderService, ReaderService>();
+            services.AddScoped<IBackupService, BackupService>();
+
             services.AddAutoMapper(typeof(Startup));
 
             services.AddControllers();

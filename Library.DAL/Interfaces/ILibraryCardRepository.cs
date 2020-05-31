@@ -4,12 +4,8 @@ using Library.DAL.Models;
 
 namespace Library.DAL.Interfaces
 {
-    public interface ILibraryCardRepository
+    public interface ILibraryCardRepository: IRepository<LibraryCard>
     {
-        List<LibraryCard> GetAll();
-
-        Guid Create(LibraryCard card);
-
         void ReturnBook(Guid id);
     }
 }

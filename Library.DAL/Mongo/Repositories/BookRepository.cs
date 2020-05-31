@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Library.DAL.Dapper;
 using Library.DAL.Interfaces;
 using Library.DAL.Models;
 using MongoDB.Driver;
@@ -8,9 +9,9 @@ namespace Library.DAL.Mongo.Repositories
 {
     public class BookRepository : BaseMongoRepository<Book>, IBookRepository
     {
-        private readonly Context _context;
+        private readonly MongoContext _context;
 
-        public BookRepository(Context context) : base(context)
+        public BookRepository(MongoContext context) : base(context)
         {
             _context = context;
         }

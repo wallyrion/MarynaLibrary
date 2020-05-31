@@ -10,8 +10,6 @@ namespace Library.Infrastructure.Registers
     {
         public void Register(IServiceCollection services, Settings settings)
         {
-            services.AddScoped(options => new Context(settings.ConnectionString));
-
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<IReaderRepository, ReaderRepository>();
             services.AddScoped<ILibraryCardRepository, LibraryCardRepository>();
