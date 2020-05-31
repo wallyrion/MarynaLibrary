@@ -42,6 +42,7 @@ namespace Library.Api
             services.AddControllers();
 
             RepositoryListener.onUpdate += RepositoryListenerHandler.OnEntityModified;
+            RepositoryListener.onUpdate += (string action, object obj) => System.Console.WriteLine($"Handler for modified entity triggered. Action: {action}, entity: {obj}");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

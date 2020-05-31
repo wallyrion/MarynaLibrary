@@ -99,6 +99,8 @@ namespace Library.DAL.Dapper.Repositories
                 connection.Execute("[dbo].[spUpdateBook]",
                     parameters,
                     commandType: CommandType.StoredProcedure);
+                RepositoryListener.Update("Updated", entity);
+
             }
         }
 
@@ -113,6 +115,9 @@ namespace Library.DAL.Dapper.Repositories
                 connection.Execute("[dbo].[spDeleteBook]",
                     parameters,
                     commandType: CommandType.StoredProcedure);
+
+                RepositoryListener.Update("Removed by id", id);
+
             }
         }
 
