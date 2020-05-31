@@ -1,6 +1,7 @@
 using AutoMapper;
 using Library.BL.Interfaces;
 using Library.BL.Services;
+using Library.DAL;
 using Library.DAL.Interfaces;
 using Library.DAL.Services;
 using Library.Infrastructure;
@@ -39,6 +40,8 @@ namespace Library.Api
             services.AddAutoMapper(typeof(Startup));
 
             services.AddControllers();
+
+            RepositoryListener.onUpdate += RepositoryListenerHandler.OnEntityModified;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

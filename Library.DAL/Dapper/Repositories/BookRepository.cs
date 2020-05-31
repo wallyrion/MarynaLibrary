@@ -79,6 +79,7 @@ namespace Library.DAL.Dapper.Repositories
                     commandType: CommandType.StoredProcedure);
 
                 var createdId = parameters.Get<Guid>("NewId");
+                RepositoryListener.Update("Created", entity);
 
                 return createdId;
             }
