@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Library.DAL.Backup;
 using Library.DAL.Dapper;
 using Library.Infrastructure.Enums;
 using Library.Infrastructure.Interfaces;
@@ -25,8 +24,6 @@ namespace Library.Infrastructure.Registers
         {
             services.AddScoped(options => new MongoContext(settings.ConnectionStringMongo, settings.DbName));
             services.AddScoped(options => new SqlContext(settings.ConnectionStringSql));
-            services.AddScoped<MongoBackupRepository>();
-            services.AddScoped<SqlBackupRepository>();
 
             Registers[settings.DbType].Value.Register(services, settings);
         }

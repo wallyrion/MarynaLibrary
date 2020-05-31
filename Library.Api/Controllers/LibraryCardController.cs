@@ -4,7 +4,7 @@ using Library.BL.Interfaces;
 using Library.BL.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Library.WebApi.Controllers
+namespace Library.Api.Controllers
 {
     [Route("api/[controller]/[action]")]
     public class LibraryCardController : Controller

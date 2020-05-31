@@ -11,20 +11,24 @@ namespace Library.Api.Controllers
 
         public BackupController(IBackupService backupService)
         {
-            this._backupService = backupService;
+            _backupService = backupService;
         }
 
 
         [HttpPost]
-        public async Task ImportFromMongoToSql()
+        public async Task<OkResult> ImportFromMongoToSql()
         {
             await _backupService.BackUpFromMongoToSql();
+
+            return Ok();
         }
 
         [HttpPost]
-        public async Task ImportFromSqlToMongo()
+        public async Task<OkResult> ImportFromSqlToMongo()
         {
             await _backupService.BackUpFromSqlToMongo();
+
+            return Ok();
         }
     }
 }

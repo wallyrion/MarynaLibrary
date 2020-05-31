@@ -1,30 +1,27 @@
 ﻿using System.Threading.Tasks;
 using Library.BL.Interfaces;
-using Library.DAL.Backup;
+using Library.DAL.Interfaces;
+using Library.DAL.Services;
 
 namespace Library.BL.Services
 {
     public class BackupService : IBackupService
     {
-        private readonly MongoBackupRepository _mongoBackupRepository;
-        private readonly SqlBackupRepository _sqlBackupRepository;
+        private readonly IBackupRepository _backupRepository;
 
-        public BackupService(MongoBackupRepository mongoBackupRepository, SqlBackupRepository sqlBackupRepository)
+        public BackupService(IBackupRepository backupRepository)
         {
-            _mongoBackupRepository = mongoBackupRepository;
-            _sqlBackupRepository = sqlBackupRepository;
+            _backupRepository = backupRepository;
         }
 
         public async Task BackUpFromMongoToSql()
         {
-            var data = await _mongoBackupRepository.Import();
-            await _sqlBackupRepository.Export(data);
-        }
-        public async Task BackUpFromSqlToMongo()
-        {
-            var data = await _sqlBackupRepository.Import();
-            await _mongoBackupRepository.Export(data);
+            await _backupRepository.ImportToSqlFromMongo();
         }
 
+        public async Task BackUpFromSqlToMongo()
+        {
+            await _backupRepository.ImportToMongoFromSql();
+        }
     }
 }

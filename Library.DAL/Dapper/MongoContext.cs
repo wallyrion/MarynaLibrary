@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
 
 namespace Library.DAL.Dapper
 {
@@ -21,7 +18,7 @@ namespace Library.DAL.Dapper
 
         public IMongoDatabase Database { get; }
 
-        public IMongoCollection<TCollection> GetCollection<TCollection>() where TCollection : class
+        public IMongoCollection<TCollection> GetCollection<TCollection>()
         {
             return Database.GetCollection<TCollection>(typeof(TCollection).Name);
         }

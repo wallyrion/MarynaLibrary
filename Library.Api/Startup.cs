@@ -1,6 +1,8 @@
 using AutoMapper;
 using Library.BL.Interfaces;
 using Library.BL.Services;
+using Library.DAL.Interfaces;
+using Library.DAL.Services;
 using Library.Infrastructure;
 using Library.Infrastructure.Registers;
 using Microsoft.AspNetCore.Builder;
@@ -25,13 +27,13 @@ namespace Library.Api
         {
             services.AddSingleton(new Settings(Configuration));
 
-            ServiceProvider serviceProvider = services.BuildServiceProvider();
-            var settings = serviceProvider.GetRequiredService<Settings>();
+            var settings = services.BuildServiceProvider().GetRequiredService<Settings>();
 
             RegisterStrategy.Register(settings, services);
             services.AddScoped<ILibraryService, LibraryService>();
             services.AddScoped<IBookService, BookService>();
             services.AddScoped<IReaderService, ReaderService>();
+            services.AddScoped<IBackupRepository, BackupRepository>();
             services.AddScoped<IBackupService, BackupService>();
 
             services.AddAutoMapper(typeof(Startup));

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Library.DAL.Models;
 
-namespace Library.WebApi.Infrastructure
+namespace Library.Api.Infrastructure
 {
     public class ApplicationProfile : Profile
     {

@@ -9,7 +9,7 @@ using MongoDB.Driver;
 
 namespace Library.DAL.Mongo
 {
-    public class BaseMongoRepository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
+    public class BaseMongoRepository<TEntity> : IRepository<TEntity> where TEntity : IEntity
     {
         protected readonly IMongoCollection<TEntity> Collection;
 
@@ -27,7 +27,8 @@ namespace Library.DAL.Mongo
         public async Task<List<TEntity>> GetAllAsync()
         {
             var a = await Collection.FindAsync(_ => true);
-            return a.ToList();
+            var res = a.ToList();
+            return res;
         }
 
         public Task<Guid> CreateAsync(TEntity entity)

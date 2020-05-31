@@ -30,6 +30,7 @@ namespace Library.DAL.Dapper.Repositories
             }
         }
 
+
         public async Task<List<Book>> GetAllAsync()
         {
             using (var connection = new SqlConnection(_context.ConnectionString))
