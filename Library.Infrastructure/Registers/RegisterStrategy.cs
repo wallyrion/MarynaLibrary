@@ -23,8 +23,8 @@ namespace Library.Infrastructure.Registers
 
         public static void Register(Settings settings, IServiceCollection services)
         {
-            services.AddScoped(options => new MongoContext(settings.ConnectionString, settings.DbName));
-            services.AddScoped(options => new SqlContext(settings.ConnectionString));
+            services.AddScoped(options => new MongoContext(settings.ConnectionStringMongo, settings.DbName));
+            services.AddScoped(options => new SqlContext(settings.ConnectionStringSql));
             services.AddScoped<MongoBackupRepository>();
             services.AddScoped<SqlBackupRepository>();
 

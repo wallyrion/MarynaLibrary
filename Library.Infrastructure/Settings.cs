@@ -19,11 +19,14 @@ namespace Library.Infrastructure
             var dbType = Enum.Parse<DbType>(type);
 
             DbType = dbType;
-            ConnectionString = configuration.GetConnectionString(connections[dbType]);
+            ConnectionStringMongo = configuration.GetConnectionString(connections[DbType.MongoDb]);
+            ConnectionStringSql = configuration.GetConnectionString(connections[DbType.Sql]);
             DbName = configuration["DbName"];
         }
 
-        public string ConnectionString { get; }
+        public string ConnectionStringMongo { get; }
+
+        public string ConnectionStringSql { get; }
 
         public string DbName { get; }
 
