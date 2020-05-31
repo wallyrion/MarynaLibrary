@@ -1,21 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using Library.BL.Interfaces;
 using Library.BL.Services;
-using Library.DAL.Dapper;
-using Library.DAL.Interfaces;
-using Library.DAL.Repositories;
+using Library.Infrastructure;
+using Library.Infrastructure.Registers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace Library.Api
 {
@@ -31,13 +23,15 @@ namespace Library.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IBookRepository, BookRepository>();
-            services.AddTransient<IReaderRepository, ReaderRepository>();
-            services.AddTransient<ILibraryCardRepository, LibraryCardRepository>();
-            services.AddTransient<ILibraryService, LibraryService>();
-            services.AddTransient<IBookService, BookService>();
-            services.AddTransient<IReaderService, ReaderService>();
-            services.AddTransient(options => new Context(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddSingleton(new Settings(Configuration));
+
+            ServiceProvider serviceProvider = services.BuildServiceProvider();
+            var settings = serviceProvider.GetRequiredService<Settings>();
+
+            RegisterStrategy.Register(settings, services);
+            services.AddScoped<ILibraryService, LibraryService>();
+            services.AddScoped<IBookService, BookService>();
+            services.AddScoped<IReaderService, ReaderService>(); 
             services.AddAutoMapper(typeof(Startup));
 
             services.AddControllers();

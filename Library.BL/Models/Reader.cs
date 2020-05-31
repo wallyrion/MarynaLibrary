@@ -1,8 +1,10 @@
-﻿namespace Library.BL.Models
+﻿using System;
+
+namespace Library.BL.Models
 {
     public class Reader
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         public string FirstName { get; set; }
 

@@ -1,14 +1,16 @@
 ﻿using System;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Library.DAL.Models
 {
-    public class LibraryCard
+    public class LibraryCard : IEntity
     {
-        public int Id { get; set; }
+        [BsonId]
+        public Guid Id { get; set; }
 
-        public int ReaderId { get; set; }
+        public Guid ReaderId { get; set; }
 
-        public int BookId { get; set; }
+        public Guid BookId { get; set; }
 
         public int BookQuantity { get; set; }
 

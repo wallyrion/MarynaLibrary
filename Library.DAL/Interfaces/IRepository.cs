@@ -1,15 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Library.DAL.Models;
 
 namespace Library.DAL.Interfaces
 {
-    public interface IRepository<TEntity> where TEntity: class
+    public interface IRepository<TEntity> where TEntity : IEntity
     {
         List<TEntity> GetAll();
 
-        int Create(TEntity entity);
+        Guid Create(TEntity entity);
 
         void Update(TEntity entity);
 
-        void Remove(int id);
+        void Remove(Guid id);
     }
 }

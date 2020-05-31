@@ -5,12 +5,11 @@ namespace Library.BL.Models
 {
     public class LibraryCard
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
-        public int ReaderId { get; set; }
+        public Guid ReaderId { get; set; }
 
-        public int BookId { get; set; }
-
+        public Guid BookId { get; set; }
 
         public string Author { get; set; }
 

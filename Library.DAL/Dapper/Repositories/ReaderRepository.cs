@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Dapper;
-using Library.DAL.Dapper;
 using Library.DAL.Interfaces;
 using Library.DAL.Models;
 
-namespace Library.DAL.Repositories
+namespace Library.DAL.Dapper.Repositories
 {
     public class ReaderRepository : IReaderRepository
     {
@@ -29,11 +29,11 @@ namespace Library.DAL.Repositories
             }
         }
 
-        public int Create(Reader entity)
+        public Guid Create(Reader entity)
         {
             var parameters = new DynamicParameters();
             parameters.Add("FirstName", entity.FirstName);
-            parameters.Add("NewId", direction: ParameterDirection.Output, dbType:DbType.Int32);
+            parameters.Add("NewId", direction: ParameterDirection.Output, dbType: DbType.Guid);
             parameters.Add("LastName", entity.LastName);
             parameters.Add("Phone", entity.Phone);
 
@@ -44,7 +44,7 @@ namespace Library.DAL.Repositories
                     parameters,
                     commandType: CommandType.StoredProcedure);
 
-                var createdId = parameters.Get<int>("NewId");
+                var createdId = parameters.Get<Guid>("NewId");
 
                 return createdId;
             }
@@ -67,7 +67,7 @@ namespace Library.DAL.Repositories
             }
         }
 
-        public void Remove(int id)
+        public void Remove(Guid id)
         {
             var parameters = new DynamicParameters();
             parameters.Add("Id", id);
